@@ -4,144 +4,123 @@
 <meta charset="UTF-8" />
 <meta name="robots" content="noindex, nofollow" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>FARM2DOOR &mdash; new packaging design</title>
+<title>FARM2DOOR — premium carton design</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;500;600;700&family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#FBFAF3; --ink:#18211B; --ink-2:#55605A;
-    --green:#1F9D57; --green-deep:#157A43; --green-soft:#E4F1E5;
-    --yolk:#FDB62E; --yolk-soft:#FFF0CF; --cream:#F7F1E4; --white:#fff; --line:rgba(24,33,27,.14);
-    --disp:'Bricolage Grotesque',system-ui,sans-serif; --sans:'Inter',system-ui,sans-serif;
-  }
+  :root{--kraft:#E9DEC7;--kraft2:#DED0AF;--cream:#FBF7EE;--paper:#FFFDF8;--blue:#12608F;--blue-deep:#0C4A70;--amber:#E4A23C;--ink:#1b1611;--ink-2:#5a5145;--line:rgba(27,22,17,.14);--slab:'Zilla Slab',Georgia,serif;--sans:'Inter',system-ui,sans-serif}
   *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:var(--sans);background:radial-gradient(1200px 700px at 50% 0,#eef6ef,#e5ecdd);color:var(--ink);padding:44px 20px 80px;-webkit-font-smoothing:antialiased}
+  body{font-family:var(--sans);background:radial-gradient(1200px 700px at 50% 0,#efe7d4,#e2d6bb);color:var(--ink);padding:44px 20px 80px;-webkit-font-smoothing:antialiased}
   .head{text-align:center;max-width:760px;margin:0 auto 40px}
-  .head .k{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--green)}
-  .head h1{font-family:var(--disp);font-size:38px;font-weight:800;letter-spacing:-.02em;margin:8px 0}
+  .head .k{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--blue-deep)}
+  .head h1{font-family:var(--slab);font-size:36px;font-weight:700;margin:8px 0}
   .head p{color:var(--ink-2);font-size:15.5px}
   .stack{max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:40px;align-items:center}
-  .cap{font-weight:700;font-size:13px;color:var(--ink-2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;text-align:center}
+  .cap{font-weight:700;font-size:12px;color:var(--ink-2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px;text-align:center}
 
-  /* egg motifs */
-  .begg{position:relative;border-radius:50% 50% 49% 51% / 62% 62% 40% 40%;background:radial-gradient(circle at 37% 28%,#E4AC78,#BA7D47 46%,#794D28 100%);box-shadow:inset -5px -7px 13px rgba(80,48,22,.4),inset 5px 5px 11px rgba(255,226,190,.3)}
-  .begg::after{content:"";position:absolute;top:15%;left:22%;width:28%;height:22%;border-radius:50%;background:rgba(255,242,225,.45);filter:blur(2px)}
-  .ssu{position:relative;border-radius:49% 51% 52% 48% / 55% 48% 52% 45%;background:var(--white);box-shadow:0 6px 14px -6px rgba(24,33,27,.3)}
-  .ssu::after{content:"";position:absolute;top:28%;left:30%;width:42%;height:42%;border-radius:50%;background:radial-gradient(circle at 38% 33%,#FFDA6A,var(--yolk) 62%,#F0A31E)}
+  .badge{background:var(--ink);color:#f6efdf;border-radius:8px;padding:8px 15px 7px;display:inline-flex;flex-direction:column;align-items:center;line-height:1}
+  .badge b{font-family:var(--slab);font-weight:700;font-size:19px;letter-spacing:.03em}
+  .badge span{font-size:7px;letter-spacing:.34em;margin-top:3px;color:#c7bda4;padding-left:.34em}
+  .uae{display:inline-block;width:24px;height:15px;border-radius:2px;overflow:hidden;position:relative;border:1px solid rgba(0,0,0,.15);vertical-align:middle}
+  .uae i{position:absolute}.uae .red{left:0;top:0;bottom:0;width:29%;background:#CE1126}.uae .g{left:29%;right:0;top:0;height:33.34%;background:#007A3D}.uae .w{left:29%;right:0;top:33.33%;height:33.34%;background:#fff}.uae .k{left:29%;right:0;top:66.66%;height:33.34%;background:#111}
 
-  .uae{display:inline-block;width:26px;height:16px;border-radius:2px;overflow:hidden;position:relative;border:1px solid rgba(0,0,0,.15);vertical-align:middle}
-  .uae i{position:absolute}
-  .uae .red{left:0;top:0;bottom:0;width:29%;background:#EF3340}
-  .uae .g{left:29%;right:0;top:0;height:33.34%;background:#009739}
-  .uae .w{left:29%;right:0;top:33.33%;height:33.34%;background:#fff}
-  .uae .k{left:29%;right:0;top:66.66%;height:33.34%;background:#111}
+  /* TOP LID */
+  .top{width:860px;max-width:100%;aspect-ratio:860/420;background:var(--cream);border-radius:16px;position:relative;overflow:hidden;box-shadow:0 30px 60px -30px rgba(27,22,17,.45);border:1px solid var(--line)}
+  .top::before{content:"";position:absolute;inset:14px;border:1.5px solid rgba(18,96,143,.35);border-radius:10px;pointer-events:none}
+  .brandrow{position:absolute;top:30px;left:38px;right:38px;display:flex;justify-content:space-between;align-items:center;z-index:3}
+  .madein{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);display:flex;align-items:center;gap:8px}
+  .htext{position:absolute;top:92px;left:40px;z-index:3;max-width:320px}
+  .headline{font-family:var(--slab);font-weight:700;font-size:44px;line-height:.98;letter-spacing:-.01em}
+  .headline .brown{color:var(--blue-deep)}
+  .subline{margin-top:12px;font-size:12.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--blue);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .subline .dot{width:4px;height:4px;border-radius:50%;background:var(--amber)}
+  .badge10{position:absolute;top:80px;right:40px;z-index:3;width:114px;height:114px;border-radius:50%;background:var(--paper);border:2px solid var(--blue);color:var(--blue-deep);display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .badge10 .n{font-family:var(--slab);font-weight:700;font-size:46px;line-height:.9}
+  .badge10 .m{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-top:2px}
+  .scene{position:absolute;left:0;right:0;top:150px;bottom:46px;overflow:hidden}
+  .scene .skyline{position:absolute;left:0;right:0;bottom:0;width:100%;height:88px;display:block}
+  .scene .hen{position:absolute;left:50%;transform:translateX(-50%);bottom:2px;height:150px;z-index:2}
+  .top .foot{position:absolute;left:0;right:0;bottom:0;height:46px;background:var(--blue);display:flex;align-items:center;justify-content:center;gap:14px;color:#eaf3fa;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;z-index:4}
+  .top .foot .sep{width:4px;height:4px;border-radius:50%;background:var(--amber)}
 
-  /* ---- TOP PANEL ---- */
-  .top{width:860px;max-width:100%;aspect-ratio:860/420;background:var(--cream);border-radius:20px;position:relative;overflow:hidden;box-shadow:0 30px 60px -30px rgba(24,33,27,.4);border:1px solid var(--line)}
-  .top .brandrow{position:absolute;top:26px;left:34px;right:34px;display:flex;justify-content:space-between;align-items:center}
-  .logo{font-family:var(--disp);font-weight:800;font-size:27px;letter-spacing:-.01em;display:flex;align-items:center;gap:10px}
-  .logo .yolk{width:16px;height:16px;border-radius:50%;background:var(--yolk);box-shadow:0 0 0 5px var(--yolk-soft)}
-  .madein{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);display:flex;align-items:center;gap:8px}
-  .top .htext{position:absolute;top:84px;left:36px;max-width:330px;z-index:3}
-  .headline{font-family:var(--disp);font-weight:800;font-size:48px;line-height:.92;letter-spacing:-.02em}
-  .headline .brown{color:#8a5a2f}
-  .subline{margin-top:12px;font-size:13.5px;font-weight:700;letter-spacing:.02em;color:var(--green-deep);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-  .subline .dot{width:5px;height:5px;border-radius:50%;background:var(--yolk)}
-  .badge10{position:absolute;top:74px;right:34px;z-index:3;width:120px;height:120px;border-radius:50%;background:var(--green);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 14px 26px -12px rgba(31,157,87,.7)}
-  .badge10 .n{font-family:var(--disp);font-weight:800;font-size:50px;line-height:.9}
-  .badge10 .m{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-top:2px}
-  .scene{position:absolute;left:0;right:0;top:150px;bottom:52px;overflow:hidden}
-  .scene .skyline{position:absolute;left:0;right:0;bottom:0;width:100%;height:96px;display:block}
-  .scene .hen{position:absolute;left:50%;transform:translateX(-50%);bottom:4px;height:162px;z-index:2}
-  .top .foot{position:absolute;left:0;right:0;bottom:0;height:52px;background:var(--green);display:flex;align-items:center;justify-content:center;gap:16px;color:#eafaf0;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
-  .top .foot .sep{width:5px;height:5px;border-radius:50%;background:var(--yolk)}
-
-  /* ---- FRONT STRIP ---- */
-  .front{width:860px;max-width:100%;aspect-ratio:860/108;background:var(--green);border-radius:14px;position:relative;overflow:hidden;box-shadow:0 20px 40px -22px rgba(24,33,27,.4);display:flex;align-items:center;justify-content:space-between;padding:0 30px;color:#fff}
-  .front .fl{font-family:var(--disp);font-weight:800;font-size:22px;display:flex;align-items:center;gap:9px}
-  .front .fl .yolk{width:13px;height:13px;border-radius:50%;background:var(--yolk)}
-  .front .fc{font-size:13.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;opacity:.95;display:flex;gap:12px;align-items:center}
-  .front .fc .sep{width:5px;height:5px;border-radius:50%;background:var(--yolk)}
+  /* FRONT STRIP */
+  .front{width:860px;max-width:100%;aspect-ratio:860/108;background:var(--cream);border:1px solid var(--line);border-radius:12px;position:relative;overflow:hidden;box-shadow:0 20px 40px -22px rgba(27,22,17,.4);display:flex;align-items:center;justify-content:space-between;padding:0 30px}
+  .front .fc{font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--blue-deep);display:flex;gap:12px;align-items:center}
+  .front .fc .sep{width:4px;height:4px;border-radius:50%;background:var(--amber)}
   .front .fr{display:flex;align-items:center;gap:12px}
-  .front .fr .big{font-family:var(--disp);font-weight:800;font-size:30px;line-height:1}
-  .front .fr .mm{font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.9}
+  .front .fr .big{font-family:var(--slab);font-weight:700;font-size:30px;color:var(--blue-deep)}
+  .front .fr .mm{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
 
-  .notebox{max-width:860px;margin:8px auto 0;background:var(--yolk-soft);border:1px solid #ecd98a;border-radius:14px;padding:16px 20px;font-size:13.5px;color:#7a5c00;line-height:1.5}
-  .notebox b{font-weight:700}
-  @media(max-width:720px){.headline{font-size:34px}.badge10{width:96px;height:96px}.badge10 .n{font-size:40px}.eggcluster{display:none}.front .fc{display:none}}
+  .notebox{max-width:860px;margin:8px auto 0;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px 20px;font-size:13.5px;color:var(--ink-2);line-height:1.55}
+  .notebox b{color:var(--ink)}
+  @media(max-width:720px){.headline{font-size:30px}.badge10{width:88px;height:88px}.badge10 .n{font-size:36px}.front .fc{display:none}}
 </style>
 </head>
 <body>
 
 <div class="head">
-  <div class="k">FARM2DOOR &middot; new packaging design</div>
-  <h1>Carton, rebranded to match the site</h1>
-  <p>Same fresh look as the website &mdash; green &amp; yolk, bold type, egg motif. Below: the carton <b>top lid</b> and the <b>front strip</b>. This is the design direction; a print-ready vector die-line follows once you approve.</p>
+  <div class="k">FARM2DOOR &middot; premium carton</div>
+  <h1>Clean, premium — printed as illustration</h1>
+  <p>Heritage look matched to the site: kraft &amp; blue, the FARM2DOOR badge, a refined hen &amp; Dubai skyline drawn as line art (prints crisp on recycled pulp). Below: the top lid and the front strip.</p>
 </div>
 
 <div class="stack">
-
-  <!-- TOP LID -->
   <div style="width:100%;display:flex;flex-direction:column;align-items:center">
     <div class="cap">Carton top (lid)</div>
     <div class="top">
       <div class="brandrow">
-        <div class="logo"><span class="yolk"></span>FARM2DOOR</div>
+        <div class="badge"><b>FARM2DOOR</b><span>LOCAL FRESH</span></div>
         <div class="madein">Made in the UAE <span class="uae"><i class="red"></i><i class="g"></i><i class="w"></i><i class="k"></i></span></div>
       </div>
       <div class="htext">
         <div class="headline">Premium<br><span class="brown">Brown Eggs</span></div>
-        <div class="subline">Locally fresh <span class="dot"></span> Free-range <span class="dot"></span> Pasteurised</div>
+        <div class="subline">Pasteurized <span class="dot"></span> Free-range</div>
       </div>
       <div class="badge10"><span class="n">10</span><span class="m">Medium</span></div>
       <div class="scene">
-        <svg class="skyline" viewBox="0 0 440 96" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg">
-          <g fill="#B4D3BC">
-            <rect x="6" y="64" width="16" height="32"/><rect x="26" y="52" width="12" height="44"/><rect x="42" y="70" width="18" height="26"/>
-            <path d="M66 96 L66 46 C86 42 94 72 98 96 Z"/>
-            <rect x="104" y="58" width="14" height="38"/><rect x="120" y="68" width="18" height="28"/>
-            <path d="M150 96 L158 30 L162 8 L166 30 L174 96 Z"/>
-            <rect x="184" y="60" width="16" height="36"/>
-            <rect x="210" y="48" width="6" height="48"/><rect x="236" y="48" width="6" height="48"/><rect x="210" y="48" width="32" height="7"/>
-            <rect x="252" y="64" width="16" height="32"/><rect x="272" y="54" width="12" height="42"/><rect x="290" y="70" width="20" height="26"/>
-            <rect x="314" y="60" width="14" height="36"/><rect x="332" y="66" width="18" height="30"/><rect x="354" y="52" width="12" height="44"/>
-            <rect x="372" y="70" width="16" height="26"/><rect x="392" y="62" width="14" height="34"/><rect x="410" y="68" width="14" height="28"/>
+        <svg class="skyline" viewBox="0 0 440 88" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg">
+          <g fill="#A9C6DA">
+            <rect x="6" y="58" width="16" height="30"/><rect x="26" y="46" width="12" height="42"/><rect x="42" y="64" width="18" height="24"/>
+            <path d="M66 88 L66 40 C86 36 94 66 98 88 Z"/>
+            <rect x="104" y="52" width="14" height="36"/><rect x="120" y="62" width="18" height="26"/>
+            <path d="M150 88 L158 24 L162 6 L166 24 L174 88 Z"/>
+            <rect x="184" y="54" width="16" height="34"/>
+            <rect x="210" y="42" width="6" height="46"/><rect x="236" y="42" width="6" height="46"/><rect x="210" y="42" width="32" height="7"/>
+            <rect x="252" y="58" width="16" height="30"/><rect x="272" y="48" width="12" height="40"/><rect x="290" y="64" width="20" height="24"/>
+            <rect x="314" y="54" width="14" height="34"/><rect x="332" y="60" width="18" height="28"/><rect x="354" y="46" width="12" height="42"/>
+            <rect x="372" y="64" width="16" height="24"/><rect x="392" y="56" width="14" height="32"/><rect x="410" y="62" width="14" height="26"/>
           </g>
         </svg>
         <svg class="hen" viewBox="0 0 150 130" xmlns="http://www.w3.org/2000/svg">
-          <path d="M112 60 C133 39 147 41 138 63 C133 78 119 74 111 66 Z" fill="#9C6638"/>
-          <path d="M107 66 C126 51 141 56 132 74 C125 86 112 80 106 71 Z" fill="#B57C48"/>
-          <ellipse cx="76" cy="70" rx="46" ry="33" fill="#B57C48"/>
-          <path d="M55 62 C70 50 101 50 113 71 C98 83 71 83 55 66 Z" fill="#9C6638"/>
-          <path d="M28 54 C24 72 46 84 61 77 L53 52 C45 48 33 48 28 54 Z" fill="#B57C48"/>
-          <ellipse cx="34" cy="45" rx="17" ry="17" fill="#B57C48"/>
-          <circle cx="25" cy="29" r="6" fill="#E0483A"/><circle cx="34" cy="26" r="6.5" fill="#E0483A"/><circle cx="43" cy="29" r="6" fill="#E0483A"/>
-          <path d="M18 44 L3 49 L18 55 Z" fill="#F0A31E"/>
-          <ellipse cx="24" cy="57" rx="5" ry="8" fill="#E0483A"/>
-          <circle cx="30" cy="43" r="3" fill="#18211B"/>
-          <path d="M64 101 L62 117 M60 117 L53 121 M60 117 L67 123" stroke="#F0A31E" stroke-width="4.5" stroke-linecap="round" fill="none"/>
-          <path d="M90 101 L92 117 M90 117 L83 123 M90 117 L97 121" stroke="#F0A31E" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+          <path d="M112 58 C135 34 150 37 140 61 C134 78 118 74 110 65 Z" fill="#2a2118"/>
+          <path d="M106 65 C127 48 143 54 133 74 C126 87 112 81 105 71 Z" fill="#3a2f22"/>
+          <ellipse cx="76" cy="70" rx="46" ry="33" fill="#2a2118"/>
+          <path d="M55 62 C70 50 101 50 113 71 C98 83 71 83 55 66 Z" fill="#3a2f22"/>
+          <path d="M28 54 C24 72 46 84 61 77 L53 52 C45 48 33 48 28 54 Z" fill="#2a2118"/>
+          <ellipse cx="34" cy="45" rx="17" ry="17" fill="#2a2118"/>
+          <path d="M22 30 C22 22 32 22 32 29 C38 21 46 24 43 32 C50 28 54 35 48 39 C40 34 28 34 22 34 Z" fill="#B8432F"/>
+          <path d="M18 44 L2 49 L18 55 Z" fill="#E4A23C"/>
+          <ellipse cx="24" cy="57" rx="4.5" ry="8" fill="#B8432F"/>
+          <circle cx="30" cy="43" r="3" fill="#FBF7EE"/>
+          <path d="M64 101 L62 118 M60 118 L53 122 M60 118 L67 124" stroke="#3a2f22" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+          <path d="M90 101 L92 118 M90 118 L83 124 M90 118 L97 122" stroke="#3a2f22" stroke-width="4.5" stroke-linecap="round" fill="none"/>
         </svg>
       </div>
-      <div class="foot">Free-range <span class="sep"></span> Pasteurised <span class="sep"></span> 10 medium brown eggs <span class="sep"></span> farm2door.ae</div>
+      <div class="foot">Pasteurized <span class="sep"></span> Free-range <span class="sep"></span> 10 medium brown eggs <span class="sep"></span> farm2door.ae</div>
     </div>
   </div>
 
-  <!-- FRONT STRIP -->
   <div style="width:100%;display:flex;flex-direction:column;align-items:center">
     <div class="cap">Carton front (strip)</div>
     <div class="front">
-      <div class="fl"><span class="yolk"></span>FARM2DOOR</div>
-      <div class="fc">Premium brown eggs <span class="sep"></span> Free-range <span class="sep"></span> Pasteurised</div>
+      <div class="badge"><b>FARM2DOOR</b><span>LOCAL FRESH</span></div>
+      <div class="fc">Premium brown eggs <span class="sep"></span> Pasteurized <span class="sep"></span> Free-range</div>
       <div class="fr"><span class="big">10</span><span class="mm">Medium<br>eggs</span><span class="uae"><i class="red"></i><i class="g"></i><i class="w"></i><i class="k"></i></span></div>
     </div>
   </div>
 
-  <div class="notebox">
-    <b>Note:</b> shown on a light cream printed area. On the actual recycled-pulp carton this print sits on the natural pulp; we can keep the cream/white print zone or print green/yolk directly on the kraft &mdash; I'll prep both so the supplier can quote. Colours: green <b>#1F9D57</b>, yolk <b>#FDB62E</b>, ink <b>#18211B</b>.
-  </div>
-
+  <div class="notebox"><b>Note:</b> printed as line-art / flat spot colours (blue + ink + a touch of amber) on the recycled-pulp carton — crisp and premium, no photos on-pack. The hen &amp; skyline are placeholders I can refine into a more detailed engraving-style illustration. Colours: blue <b>#12608F</b>, ink <b>#1b1611</b>, amber <b>#E4A23C</b>.</div>
 </div>
 </body>
 </html>
