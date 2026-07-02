@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FARM2DOOR &mdash; mobile flow (new look)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FBFAF3; --bg2:#F2EFE2; --ink:#18211B; --ink-2:#55605A; --ink-3:#8b938c;
+    --green:#1F9D57; --green-deep:#157A43; --green-soft:#E4F1E5;
+    --yolk:#FDB62E; --yolk-soft:#FFF0CF; --white:#fff; --line:rgba(24,33,27,.12);
+    --disp:'Bricolage Grotesque',system-ui,sans-serif; --sans:'Inter',system-ui,sans-serif;
+    --shadow:0 24px 60px -26px rgba(24,33,27,.5);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);color:var(--ink);background:radial-gradient(1200px 600px at 50% -5%, #eef6ef, transparent 60%),linear-gradient(180deg,#eef3ea,#e5ecdd);line-height:1.5;-webkit-font-smoothing:antialiased;padding-bottom:70px}
+
+  .page-head{text-align:center;padding:52px 24px 6px}
+  .page-head .k{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--green)}
+  .page-head h1{font-family:var(--disp);font-size:40px;font-weight:800;letter-spacing:-.02em;margin:8px 0}
+  .page-head p{color:var(--ink-2);max-width:40em;margin:0 auto;font-size:15.5px}
+
+  .gallery{display:flex;flex-wrap:wrap;gap:56px 44px;justify-content:center;padding:44px 26px}
+  .pw{display:flex;flex-direction:column;align-items:center;gap:16px;width:390px}
+  .plabel{font-weight:700;font-size:14px}
+  .plabel span{display:block;font-weight:500;font-size:12.5px;color:var(--ink-3);text-align:center;margin-top:2px}
+
+  .egg{position:relative;border-radius:49% 51% 52% 48% / 55% 48% 52% 45%;background:var(--white);box-shadow:0 14px 26px -12px rgba(24,33,27,.3)}
+  .egg::after{content:"";position:absolute;top:30%;left:30%;width:40%;height:40%;border-radius:50%;background:radial-gradient(circle at 38% 33%,#FFDA6A,var(--yolk) 62%,#F0A31E)}
+
+  .uae{display:inline-block;width:19px;height:12px;border-radius:2px;overflow:hidden;position:relative;vertical-align:middle}
+  .uae i{position:absolute}
+  .uae .red{left:0;top:0;bottom:0;width:29%;background:#EF3340}
+  .uae .g{left:29%;right:0;top:0;height:33.34%;background:#009739}
+  .uae .w{left:29%;right:0;top:33.33%;height:33.34%;background:#fff}
+  .uae .k{left:29%;right:0;top:66.66%;height:33.34%;background:#111}
+
+  /* device */
+  .device{width:390px;background:#0e0e0e;border-radius:46px;padding:11px;box-shadow:var(--shadow);flex:none}
+  .screen{background:var(--bg);border-radius:36px;overflow:hidden;position:relative;height:800px;display:flex;flex-direction:column}
+  .notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:132px;height:24px;background:#0e0e0e;border-radius:0 0 16px 16px;z-index:20}
+  .sb{height:40px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 24px 0 26px;font-size:13px;font-weight:600}
+  .body{flex:1;overflow:hidden;position:relative}
+  .scroll{position:absolute;inset:0;overflow:hidden}
+
+  .btn{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--green);color:#fff;font-weight:600;font-size:15px;padding:15px 20px;border-radius:14px;border:none;width:100%;font-family:var(--sans)}
+  .btn.dark{background:var(--ink)}
+
+  .appbar{display:flex;align-items:center;justify-content:space-between;padding:10px 18px}
+  .brand{font-family:var(--disp);font-weight:800;font-size:19px;display:flex;align-items:center;gap:8px}
+  .brand .yolk{width:12px;height:12px;border-radius:50%;background:var(--yolk);box-shadow:0 0 0 3px var(--yolk-soft)}
+  .burger{width:38px;height:38px;border-radius:11px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;background:var(--white)}
+  .burger i{display:block;width:16px;height:2px;background:var(--ink);box-shadow:0 5px 0 var(--ink),0 -5px 0 var(--ink)}
+
+  /* HOME */
+  .hero{padding:8px 20px 22px;text-align:center}
+  .eyebrow{display:inline-block;font-size:11.5px;font-weight:600;color:var(--green-deep);background:var(--green-soft);padding:6px 13px;border-radius:999px}
+  .hero h2{font-family:var(--disp);font-size:42px;font-weight:800;line-height:.95;letter-spacing:-.03em;margin:14px 0}
+  .hero h2 .yp{color:var(--yolk)}
+  .hero-art{position:relative;height:180px;margin:6px 0}
+  .hero-art .big{position:absolute;width:170px;height:154px;left:50%;top:8px;transform:translateX(-50%)}
+  .hero-art .s1{position:absolute;width:70px;height:64px;top:0;right:44px}
+  .hero-art .s2{position:absolute;width:54px;height:50px;bottom:6px;left:52px}
+  .hero p{color:var(--ink-2);font-size:14px;max-width:20em;margin:0 auto 16px}
+  .cta-stack{display:flex;flex-direction:column;gap:10px}
+  .btn.ghost{background:transparent;color:var(--ink);border:1.6px solid var(--line)}
+  .chips-t{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+  .chips-t b{font-size:11.5px;font-weight:600;color:var(--ink-2);background:var(--white);border:1px solid var(--line);padding:6px 11px;border-radius:999px;display:flex;gap:6px;align-items:center}
+  .chips-t .d{width:6px;height:6px;border-radius:50%;background:var(--green)}
+  .hstrip{background:var(--green);color:#eafaf0;margin-top:18px;padding:15px 18px;display:flex;justify-content:space-around;font-size:11.5px;font-weight:600;text-align:center}
+  .hstrip div{display:flex;flex-direction:column;gap:5px;align-items:center}
+  .hstrip .yd{width:7px;height:7px;border-radius:50%;background:var(--yolk)}
+
+  /* progress + titles */
+  .prog{display:flex;gap:6px;padding:16px 18px 6px}
+  .prog .bar{flex:1;height:5px;border-radius:3px;background:var(--bg2)}
+  .prog .bar.on{background:var(--green)}
+  .plbl{padding:2px 18px 8px;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+  .qtitle{font-family:var(--disp);font-size:26px;font-weight:800;padding:4px 18px 2px;line-height:1.05;letter-spacing:-.01em}
+  .qhint{color:var(--ink-2);font-size:13.5px;padding:0 18px 16px}
+
+  .fld{padding:4px 18px 6px}
+  .fld .lb{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);margin-bottom:10px}
+  .prodcard{margin:0 18px 16px;display:flex;gap:13px;align-items:center;border:1px solid var(--line);border-radius:18px;background:var(--white);padding:14px}
+  .prodcard .egg{width:52px;height:48px;flex:none}
+  .prodcard b{font-family:var(--disp);font-size:17px;font-weight:700;display:block}
+  .prodcard span{font-size:12.5px;color:var(--ink-2)}
+  .qty{display:flex;align-items:center;justify-content:space-between;border:1.5px solid var(--line);border-radius:16px;padding:10px 14px;background:var(--white)}
+  .qty .qb{width:44px;height:44px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);font-size:22px;font-weight:700;color:var(--ink)}
+  .qty .qm{font-family:var(--disp);font-weight:800;font-size:28px}
+  .qty .qu{font-size:12.5px;color:var(--ink-2);font-weight:600;text-align:center;line-height:1.3}
+  .days{display:flex;gap:6px}
+  .day{flex:1;text-align:center;padding:12px 0;border:1.5px solid var(--line);border-radius:12px;font-weight:700;font-size:12px;background:var(--white)}
+  .day.on{background:var(--green);color:#fff;border-color:var(--green)}
+  .hintg{font-size:12.5px;color:var(--green-deep);font-weight:600;margin-top:11px}
+  .slots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .slot{border:1.5px solid var(--line);border-radius:13px;padding:14px 6px;text-align:center;font-weight:700;font-size:13px;background:var(--white)}
+  .slot.on{border-color:var(--green);background:var(--green-soft);color:var(--green-deep)}
+  .slot small{display:block;font-weight:500;font-size:11px;color:var(--ink-2);margin-top:3px}
+  .inp{width:100%;border:1.5px solid var(--line);border-radius:13px;padding:14px;font-size:14px;font-family:var(--sans);background:var(--white);color:var(--ink);margin-bottom:10px}
+
+  /* clearer quantity */
+  .qcenter{display:flex;flex-direction:column;align-items:center;line-height:1}
+  .qcenter .qm{font-family:var(--disp);font-weight:800;font-size:30px}
+  .qcenter .qword{font-size:12.5px;font-weight:600;color:var(--ink-2);margin-top:3px;text-transform:uppercase;letter-spacing:.04em}
+  .qtotal{margin-top:12px;text-align:center;font-size:14px;color:var(--green-deep);background:var(--green-soft);border-radius:12px;padding:11px}
+  .qtotal b{font-weight:700}
+  .qtotal span{display:block;font-size:12px;color:var(--ink-2);margin-top:2px}
+  .nudge{margin-top:12px;background:var(--yolk-soft);border-radius:12px;padding:11px 13px;font-size:12.5px;color:#7a5c00;line-height:1.4}
+  .nudge b{font-weight:700}
+
+  /* map pin */
+  .mapcard{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--white)}
+  .map{position:relative;height:152px;background-color:#E7ECE3;
+    background-image:
+      linear-gradient(90deg,transparent 0 46%,#fff 46% 51%,transparent 51%),
+      linear-gradient(0deg,transparent 0 62%,#fff 62% 66%,transparent 66%),
+      linear-gradient(118deg,transparent 0 26%,#eef1ea 26% 30%,transparent 30%)}
+  .map .water{position:absolute;right:0;top:0;width:32%;height:44%;background:#cfe1ee;border-bottom-left-radius:38px}
+  .map .park{position:absolute;left:0;bottom:0;width:30%;height:38%;background:#dcebd6;border-top-right-radius:30px}
+  .pin{position:absolute;top:47%;left:50%;transform:translate(-50%,-100%);filter:drop-shadow(0 6px 6px rgba(24,33,27,.35))}
+  .maprow{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;border-top:1px solid var(--line)}
+  .mapaddr{font-size:13px;font-weight:600;display:flex;align-items:center;gap:7px}
+  .mapaddr svg{color:var(--green);flex:none}
+  .locbtn{white-space:nowrap;font-size:12.5px;font-weight:700;color:var(--green-deep);background:var(--green-soft);border:none;padding:9px 13px;border-radius:10px}
+
+  /* review */
+  .rev{margin:2px 18px 14px;border:1px solid var(--line);border-radius:18px;background:var(--white);overflow:hidden}
+  .rev .top{display:flex;gap:12px;align-items:center;padding:15px;background:var(--green-soft);border-bottom:1px solid var(--line)}
+  .rev .top .egg{width:48px;height:44px;flex:none}
+  .rev .top b{font-family:var(--disp);font-size:17px;font-weight:700;display:block}
+  .rev .top span{font-size:12px;color:var(--ink-2)}
+  .rev .row{display:flex;justify-content:space-between;padding:12px 15px;font-size:13.5px;border-bottom:1px solid var(--line)}
+  .rev .row span{color:var(--ink-2)}.rev .row b{font-weight:600}
+  .rev .total{display:flex;justify-content:space-between;align-items:center;padding:15px}
+  .rev .total .p{font-family:var(--disp);font-weight:800;font-size:24px}
+  .rev .total .p small{font-size:13px;color:var(--ink-2);font-weight:600;font-family:var(--sans)}
+  .secure{display:flex;align-items:center;justify-content:center;gap:7px;color:var(--ink-3);font-size:11.5px;margin-top:12px}
+
+  .btmbar{padding:12px 16px 16px;border-top:1px solid var(--line);background:var(--white);flex:none}
+  .btmbar .mini{display:flex;justify-content:space-between;font-size:12px;color:var(--ink-2);margin-bottom:9px;font-weight:600}
+  .foot{background:var(--ink);color:#aab5ab;padding:20px 18px;text-align:center;font-size:11.5px}
+  .foot .made{display:inline-flex;align-items:center;gap:6px;margin-top:6px}
+</style>
+</head>
+<body>
+
+<div class="page-head">
+  <div class="k">FARM2DOOR &middot; new look &middot; mobile flow</div>
+  <h1>The whole experience, restyled</h1>
+  <p>Home + the 4-step &ldquo;Build your box&rdquo; flow in the fresh green &amp; yolk direction. Same clear steps (eggs &rarr; schedule &rarr; delivery &rarr; pay), new look.</p>
+</div>
+
+<div class="gallery">
+
+  <!-- HOME -->
+  <div class="pw">
+    <div class="plabel">1 &middot; Home<span>Sells the subscription</span></div>
+    <div class="device"><div class="screen"><div class="notch"></div>
+      <div class="sb"><span>9:41</span><span>5G &#9679;&#9679;&#9679; &#9646;&#9646;&#9646;</span></div>
+      <div class="body"><div class="scroll">
+        <div class="appbar"><div class="brand"><span class="yolk"></span>FARM2DOOR</div><div class="burger"><i></i></div></div>
+        <div class="hero">
+          <span class="eyebrow">Premium free-range brown eggs &middot; UAE</span>
+          <h2>Fresh eggs,<br>on repeat<span class="yp">.</span></h2>
+          <div class="hero-art"><div class="egg big"></div><div class="egg s1"></div><div class="egg s2"></div></div>
+          <p>Premium, locally fresh, pasteurised free-range <b>brown eggs</b> &mdash; delivered on the days &amp; times you choose.</p>
+          <div class="cta-stack"><button class="btn">Build your box</button><button class="btn ghost">How it works</button></div>
+          <div class="chips-t"><b><span class="d"></span>Locally fresh</b><b><span class="d"></span>Free-range</b><b><span class="d"></span>Pasteurised</b><b><span class="d"></span>Brown eggs</b></div>
+        </div>
+        <div class="hstrip"><div><span class="yd"></span>Free-range</div><div><span class="yd"></span>Your schedule</div><div><span class="yd"></span>Pause anytime</div></div>
+      </div></div>
+    </div></div>
+  </div>
+
+  <!-- STEP 1 -->
+  <div class="pw">
+    <div class="plabel">2 &middot; Build &mdash; your eggs<span>Step 1 &middot; what &amp; how many</span></div>
+    <div class="device"><div class="screen"><div class="notch"></div>
+      <div class="sb"><span>9:41</span><span>5G &#9679;&#9679;&#9679; &#9646;&#9646;&#9646;</span></div>
+      <div class="body"><div class="scroll">
+        <div class="prog"><div class="bar on"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+        <div class="plbl">Step 1 of 4</div>
+        <div class="qtitle">How many eggs?</div>
+        <div class="qhint">Premium free-range brown eggs &mdash; 10 per carton.</div>
+        <div class="prodcard"><div class="egg"></div><div><b>Premium Brown Eggs</b><span>Locally fresh &middot; free-range &middot; pasteurised</span></div></div>
+        <div class="fld"><div class="lb">How many cartons each delivery?</div>
+          <div class="qty"><button class="qb">&minus;</button>
+            <div class="qcenter"><span class="qm">2</span><span class="qword">cartons</span></div>
+            <button class="qb">+</button></div>
+          <div class="qtotal">That's <b>20 eggs</b> every delivery<span>2 cartons &times; 10 eggs each</span></div>
+          <div class="nudge"><b>Tip:</b> order <b>3+ cartons</b> and delivery is only <b>AED 10</b> per drop (instead of AED 25).</div>
+        </div>
+      </div></div>
+      <div class="btmbar"><div class="mini"><span>AED 30 / carton</span><span><b style="color:var(--ink)">AED 60</b> eggs</span></div><button class="btn">Continue</button></div>
+    </div></div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="pw">
+    <div class="plabel">3 &middot; Build &mdash; your schedule<span>Step 2 &middot; when it arrives</span></div>
+    <div class="device"><div class="screen"><div class="notch"></div>
+      <div class="sb"><span>9:41</span><span>5G &#9679;&#9679;&#9679; &#9646;&#9646;&#9646;</span></div>
+      <div class="body"><div class="scroll">
+        <div class="prog"><div class="bar on"></div><div class="bar on"></div><div class="bar"></div><div class="bar"></div></div>
+        <div class="plbl">Step 2 of 4</div>
+        <div class="qtitle">When would you like them?</div>
+        <div class="qhint">Pick your days and a time &mdash; change or pause anytime.</div>
+        <div class="fld"><div class="lb">Delivery days</div>
+          <div class="days"><div class="day">Su</div><div class="day on">Mo</div><div class="day">Tu</div><div class="day">We</div><div class="day on">Th</div><div class="day">Fr</div><div class="day">Sa</div></div>
+          <div class="hintg">= Delivered twice a week (Mon &amp; Thu)</div>
+        </div>
+        <div class="fld" style="margin-top:12px"><div class="lb">Time window</div>
+          <div class="slots"><div class="slot on">Morning<small>7&ndash;10</small></div><div class="slot">Midday<small>11&ndash;2</small></div><div class="slot">Evening<small>5&ndash;8</small></div></div>
+        </div>
+      </div></div>
+      <div class="btmbar"><div class="mini"><span>Mon &amp; Thu &middot; mornings</span><span><b style="color:var(--ink)">AED 170</b> /wk</span></div><button class="btn">Continue</button></div>
+    </div></div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="pw">
+    <div class="plabel">4 &middot; Build &mdash; delivery<span>Step 3 &middot; where &amp; who</span></div>
+    <div class="device"><div class="screen"><div class="notch"></div>
+      <div class="sb"><span>9:41</span><span>5G &#9679;&#9679;&#9679; &#9646;&#9646;&#9646;</span></div>
+      <div class="body"><div class="scroll">
+        <div class="prog"><div class="bar on"></div><div class="bar on"></div><div class="bar on"></div><div class="bar"></div></div>
+        <div class="plbl">Step 3 of 4</div>
+        <div class="qtitle">Where should we deliver?</div>
+        <div class="qhint">Drop a pin so we find you easily &mdash; we deliver across Dubai.</div>
+        <div class="fld"><div class="lb">Pin your location</div>
+          <div class="mapcard">
+            <div class="map">
+              <div class="water"></div><div class="park"></div>
+              <div class="pin"><svg width="30" height="38" viewBox="0 0 24 32" fill="none"><path d="M12 0C5.9 0 1 4.9 1 11c0 8 11 21 11 21s11-13 11-21C23 4.9 18.1 0 12 0z" fill="#1F9D57"/><circle cx="12" cy="11" r="4.4" fill="#fff"/></svg></div>
+            </div>
+            <div class="maprow">
+              <div class="mapaddr"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5-7-11a7 7 0 0 1 14 0c0 6-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Jumeirah 1, Dubai</div>
+              <button class="locbtn">Locate me</button>
+            </div>
+          </div>
+        </div>
+        <div class="fld" style="margin-top:4px">
+          <input class="inp" value="Full name">
+          <input class="inp" value="Mobile number">
+          <input class="inp" value="Building / villa / flat no.">
+          <input class="inp" value="Delivery notes (optional)">
+        </div>
+      </div></div>
+      <div class="btmbar"><div class="mini"><span>Mon &amp; Thu &middot; mornings</span><span><b style="color:var(--ink)">AED 170</b> /wk</span></div><button class="btn">Review order</button></div>
+    </div></div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="pw">
+    <div class="plabel">5 &middot; Review &amp; subscribe<span>Step 4 &middot; confirm</span></div>
+    <div class="device"><div class="screen"><div class="notch"></div>
+      <div class="sb"><span>9:41</span><span>5G &#9679;&#9679;&#9679; &#9646;&#9646;&#9646;</span></div>
+      <div class="body"><div class="scroll">
+        <div class="prog"><div class="bar on"></div><div class="bar on"></div><div class="bar on"></div><div class="bar on"></div></div>
+        <div class="plbl">Step 4 of 4</div>
+        <div class="qtitle">Review your subscription</div>
+        <div style="height:10px"></div>
+        <div class="rev">
+          <div class="top"><div class="egg"></div><div><b>Premium Brown Eggs</b><span>10 medium brown &middot; free-range &middot; pasteurised</span></div></div>
+          <div class="row"><span>Schedule</span><b>Twice a week &middot; Mon &amp; Thu</b></div>
+          <div class="row"><span>Time</span><b>Mornings (7&ndash;10)</b></div>
+          <div class="row"><span>Deliver to</span><b>Jumeirah, Dubai</b></div>
+          <div class="row"><span>Eggs &mdash; 2 cartons &times; AED 30</span><b>AED 60</b></div>
+          <div class="row"><span>Delivery fee</span><b>AED 25</b></div>
+          <div class="row"><span>Per delivery</span><b>AED 85</b></div>
+          <div class="total"><span>Per week &middot; 2 deliveries</span><span class="p">AED&nbsp;170<small> /wk</small></span></div>
+        </div>
+        <div class="secure"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Secure payment &middot; cancel anytime</div>
+      </div></div>
+      <div class="btmbar"><button class="btn dark">Subscribe &amp; pay</button></div>
+    </div></div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FARM2DOOR — design previews</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#FBFAF3;--ink:#18211B;--ink-2:#55605A;--green:#1F9D57;--green-deep:#157A43;--green-soft:#E4F1E5;--yolk:#FDB62E;--yolk-soft:#FFF0CF;--line:rgba(24,33,27,.12);--disp:'Bricolage Grotesque',system-ui,sans-serif;--sans:'Inter',system-ui,sans-serif}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);background:radial-gradient(1200px 700px at 50% 0,#eef6ef,#e5ecdd);color:var(--ink);min-height:100vh;-webkit-font-smoothing:antialiased;padding:60px 22px}
+  .wrap{max-width:920px;margin:0 auto}
+  .logo{font-family:var(--disp);font-weight:800;font-size:26px;display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:8px}
+  .logo .yolk{width:15px;height:15px;border-radius:50%;background:var(--yolk);box-shadow:0 0 0 5px var(--yolk-soft)}
+  .k{text-align:center;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--green);margin-bottom:10px}
+  h1{font-family:var(--disp);font-weight:800;font-size:44px;letter-spacing:-.02em;text-align:center;line-height:1.02;margin-bottom:12px}
+  .sub{text-align:center;color:var(--ink-2);font-size:16px;max-width:34em;margin:0 auto 48px}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .card{display:block;background:#fff;border:1px solid var(--line);border-radius:20px;padding:30px 26px;transition:.2s;color:inherit}
+  .card:hover{transform:translateY(-4px);box-shadow:0 26px 50px -24px rgba(24,33,27,.32);border-color:var(--green)}
+  .card .ic{width:54px;height:54px;border-radius:15px;background:var(--green-soft);display:flex;align-items:center;justify-content:center;margin-bottom:20px;color:var(--green)}
+  .card h3{font-family:var(--disp);font-size:22px;font-weight:700;margin-bottom:7px}
+  .card p{color:var(--ink-2);font-size:14px;margin-bottom:16px}
+  .card .go{font-weight:700;font-size:14px;color:var(--green-deep);display:flex;align-items:center;gap:6px}
+  .foot{text-align:center;color:var(--ink-2);font-size:13px;margin-top:44px}
+  @media(max-width:760px){.cards{grid-template-columns:1fr}h1{font-size:34px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="logo"><span class="yolk"></span>FARM2DOOR</div>
+  <div class="k">Design previews</div>
+  <h1>The new FARM2DOOR, in one place</h1>
+  <p class="sub">Fresh &amp; natural direction — green &amp; yolk, bold type, egg motif. Click any preview below.</p>
+  <div class="cards">
+    <a class="card" href="home.html">
+      <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></div>
+      <h3>Homepage</h3>
+      <p>The desktop site — hero with animated eggs, how it works, why us, pricing.</p>
+      <span class="go">Open preview →</span>
+    </a>
+    <a class="card" href="flow.html">
+      <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M10 18h4"/></svg></div>
+      <h3>Mobile flow</h3>
+      <p>Home + the 4-step "Build your box" subscription flow on a phone.</p>
+      <span class="go">Open preview →</span>
+    </a>
+    <a class="card" href="packaging.html">
+      <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4M12 11v10"/></svg></div>
+      <h3>Packaging</h3>
+      <p>The new carton design (top lid + front strip) matched to the brand.</p>
+      <span class="go">Open preview →</span>
+    </a>
+  </div>
+  <div class="foot">FARM2DOOR · farm2door.ae · design previews</div>
+</div>
+</body>
+</html>

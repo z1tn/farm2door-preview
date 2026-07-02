@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FARM2DOOR &mdash; new packaging design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FBFAF3; --ink:#18211B; --ink-2:#55605A;
+    --green:#1F9D57; --green-deep:#157A43; --green-soft:#E4F1E5;
+    --yolk:#FDB62E; --yolk-soft:#FFF0CF; --cream:#F7F1E4; --white:#fff; --line:rgba(24,33,27,.14);
+    --disp:'Bricolage Grotesque',system-ui,sans-serif; --sans:'Inter',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);background:radial-gradient(1200px 700px at 50% 0,#eef6ef,#e5ecdd);color:var(--ink);padding:44px 20px 80px;-webkit-font-smoothing:antialiased}
+  .head{text-align:center;max-width:760px;margin:0 auto 40px}
+  .head .k{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--green)}
+  .head h1{font-family:var(--disp);font-size:38px;font-weight:800;letter-spacing:-.02em;margin:8px 0}
+  .head p{color:var(--ink-2);font-size:15.5px}
+  .stack{max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:40px;align-items:center}
+  .cap{font-weight:700;font-size:13px;color:var(--ink-2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;text-align:center}
+
+  /* egg motifs */
+  .begg{position:relative;border-radius:50% 50% 49% 51% / 62% 62% 40% 40%;background:radial-gradient(circle at 37% 28%,#E4AC78,#BA7D47 46%,#794D28 100%);box-shadow:inset -5px -7px 13px rgba(80,48,22,.4),inset 5px 5px 11px rgba(255,226,190,.3)}
+  .begg::after{content:"";position:absolute;top:15%;left:22%;width:28%;height:22%;border-radius:50%;background:rgba(255,242,225,.45);filter:blur(2px)}
+  .ssu{position:relative;border-radius:49% 51% 52% 48% / 55% 48% 52% 45%;background:var(--white);box-shadow:0 6px 14px -6px rgba(24,33,27,.3)}
+  .ssu::after{content:"";position:absolute;top:28%;left:30%;width:42%;height:42%;border-radius:50%;background:radial-gradient(circle at 38% 33%,#FFDA6A,var(--yolk) 62%,#F0A31E)}
+
+  .uae{display:inline-block;width:26px;height:16px;border-radius:2px;overflow:hidden;position:relative;border:1px solid rgba(0,0,0,.15);vertical-align:middle}
+  .uae i{position:absolute}
+  .uae .red{left:0;top:0;bottom:0;width:29%;background:#EF3340}
+  .uae .g{left:29%;right:0;top:0;height:33.34%;background:#009739}
+  .uae .w{left:29%;right:0;top:33.33%;height:33.34%;background:#fff}
+  .uae .k{left:29%;right:0;top:66.66%;height:33.34%;background:#111}
+
+  /* ---- TOP PANEL ---- */
+  .top{width:860px;max-width:100%;aspect-ratio:860/360;background:var(--cream);border-radius:20px;position:relative;overflow:hidden;box-shadow:0 30px 60px -30px rgba(24,33,27,.4);border:1px solid var(--line)}
+  .top .brandrow{position:absolute;top:26px;left:34px;right:34px;display:flex;justify-content:space-between;align-items:center}
+  .logo{font-family:var(--disp);font-weight:800;font-size:27px;letter-spacing:-.01em;display:flex;align-items:center;gap:10px}
+  .logo .yolk{width:16px;height:16px;border-radius:50%;background:var(--yolk);box-shadow:0 0 0 5px var(--yolk-soft)}
+  .madein{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);display:flex;align-items:center;gap:8px}
+  .top .mid{position:absolute;top:92px;left:34px;right:34px;display:flex;justify-content:space-between;align-items:center}
+  .headline{font-family:var(--disp);font-weight:800;font-size:52px;line-height:.92;letter-spacing:-.02em}
+  .headline .brown{color:#8a5a2f}
+  .subline{margin-top:12px;font-size:14px;font-weight:700;letter-spacing:.02em;color:var(--green-deep);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .subline .dot{width:5px;height:5px;border-radius:50%;background:var(--yolk)}
+  .badge10{width:132px;height:132px;border-radius:50%;background:var(--green);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none;box-shadow:0 14px 26px -12px rgba(31,157,87,.7)}
+  .badge10 .n{font-family:var(--disp);font-weight:800;font-size:56px;line-height:.9}
+  .badge10 .m{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-top:2px}
+  .rightgroup{display:flex;align-items:center;gap:18px}
+  .eggcluster{position:relative;width:120px;height:120px;flex:none}
+  .eggcluster .begg{position:absolute;width:66px;height:82px;left:6px;top:14px}
+  .eggcluster .b2{width:46px;height:58px;left:60px;top:0;background:radial-gradient(circle at 37% 28%,#E0A874,#B87844 46%,#7A4E29 100%)}
+  .eggcluster .ssu{position:absolute;width:58px;height:52px;left:54px;bottom:0}
+  .top .foot{position:absolute;left:0;right:0;bottom:0;height:52px;background:var(--green);display:flex;align-items:center;justify-content:center;gap:16px;color:#eafaf0;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+  .top .foot .sep{width:5px;height:5px;border-radius:50%;background:var(--yolk)}
+
+  /* ---- FRONT STRIP ---- */
+  .front{width:860px;max-width:100%;aspect-ratio:860/108;background:var(--green);border-radius:14px;position:relative;overflow:hidden;box-shadow:0 20px 40px -22px rgba(24,33,27,.4);display:flex;align-items:center;justify-content:space-between;padding:0 30px;color:#fff}
+  .front .fl{font-family:var(--disp);font-weight:800;font-size:22px;display:flex;align-items:center;gap:9px}
+  .front .fl .yolk{width:13px;height:13px;border-radius:50%;background:var(--yolk)}
+  .front .fc{font-size:13.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;opacity:.95;display:flex;gap:12px;align-items:center}
+  .front .fc .sep{width:5px;height:5px;border-radius:50%;background:var(--yolk)}
+  .front .fr{display:flex;align-items:center;gap:12px}
+  .front .fr .big{font-family:var(--disp);font-weight:800;font-size:30px;line-height:1}
+  .front .fr .mm{font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.9}
+
+  .notebox{max-width:860px;margin:8px auto 0;background:var(--yolk-soft);border:1px solid #ecd98a;border-radius:14px;padding:16px 20px;font-size:13.5px;color:#7a5c00;line-height:1.5}
+  .notebox b{font-weight:700}
+  @media(max-width:720px){.headline{font-size:34px}.badge10{width:96px;height:96px}.badge10 .n{font-size:40px}.eggcluster{display:none}.front .fc{display:none}}
+</style>
+</head>
+<body>
+
+<div class="head">
+  <div class="k">FARM2DOOR &middot; new packaging design</div>
+  <h1>Carton, rebranded to match the site</h1>
+  <p>Same fresh look as the website &mdash; green &amp; yolk, bold type, egg motif. Below: the carton <b>top lid</b> and the <b>front strip</b>. This is the design direction; a print-ready vector die-line follows once you approve.</p>
+</div>
+
+<div class="stack">
+
+  <!-- TOP LID -->
+  <div style="width:100%;display:flex;flex-direction:column;align-items:center">
+    <div class="cap">Carton top (lid)</div>
+    <div class="top">
+      <div class="brandrow">
+        <div class="logo"><span class="yolk"></span>FARM2DOOR</div>
+        <div class="madein">Made in the UAE <span class="uae"><i class="red"></i><i class="g"></i><i class="w"></i><i class="k"></i></span></div>
+      </div>
+      <div class="mid">
+        <div>
+          <div class="headline">Premium<br><span class="brown">Brown Eggs</span></div>
+          <div class="subline">Locally fresh <span class="dot"></span> Free-range <span class="dot"></span> Pasteurised</div>
+        </div>
+        <div class="rightgroup">
+          <div class="eggcluster">
+            <div class="begg"></div><div class="begg b2"></div><div class="ssu"></div>
+          </div>
+          <div class="badge10"><span class="n">10</span><span class="m">Medium</span></div>
+        </div>
+      </div>
+      <div class="foot">Free-range <span class="sep"></span> Pasteurised <span class="sep"></span> 10 medium brown eggs <span class="sep"></span> farm2door.ae</div>
+    </div>
+  </div>
+
+  <!-- FRONT STRIP -->
+  <div style="width:100%;display:flex;flex-direction:column;align-items:center">
+    <div class="cap">Carton front (strip)</div>
+    <div class="front">
+      <div class="fl"><span class="yolk"></span>FARM2DOOR</div>
+      <div class="fc">Premium brown eggs <span class="sep"></span> Free-range <span class="sep"></span> Pasteurised</div>
+      <div class="fr"><span class="big">10</span><span class="mm">Medium<br>eggs</span><span class="uae"><i class="red"></i><i class="g"></i><i class="w"></i><i class="k"></i></span></div>
+    </div>
+  </div>
+
+  <div class="notebox">
+    <b>Note:</b> shown on a light cream printed area. On the actual recycled-pulp carton this print sits on the natural pulp; we can keep the cream/white print zone or print green/yolk directly on the kraft &mdash; I'll prep both so the supplier can quote. Colours: green <b>#1F9D57</b>, yolk <b>#FDB62E</b>, ink <b>#18211B</b>.
+  </div>
+
+</div>
+</body>
+</html>
