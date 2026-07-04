@@ -85,13 +85,11 @@
 
   .sun{position:absolute;top:10%;right:14%;width:146px;height:146px;z-index:1}
   /* soft light beams fanning down from the sun — subtle */
-  .sun .beam{position:absolute;top:46%;left:50%;transform:translateX(-50%);width:200px;height:300px;
-    background:
-      radial-gradient(ellipse 52% 72% at 50% 0%, rgba(253,182,46,.30), rgba(253,182,46,.05) 56%, transparent 74%),
-      repeating-conic-gradient(from 168deg at 50% -2%, rgba(253,182,46,.16) 0 3deg, transparent 3deg 11deg);
-    -webkit-mask:linear-gradient(180deg,#000 0 55%,transparent 92%);
-    mask:linear-gradient(180deg,#000 0 55%,transparent 92%);
-    filter:blur(1px);opacity:.75;pointer-events:none;animation:pulse 6s ease-in-out infinite}
+  .sun .beam{position:absolute;top:40%;left:50%;transform:translateX(-50%);width:280px;height:250px;
+    background:radial-gradient(ellipse 40% 90% at 50% 0%, rgba(253,182,46,.24), rgba(253,182,46,.06) 52%, transparent 74%);
+    -webkit-mask:linear-gradient(180deg,#000 0 18%,transparent 96%);
+    mask:linear-gradient(180deg,#000 0 18%,transparent 96%);
+    filter:blur(3px);opacity:.7;pointer-events:none;animation:pulse 6s ease-in-out infinite}
   .sun .rays{position:absolute;inset:0;
     background:repeating-conic-gradient(from 0deg,var(--yolk) 0 2.4deg,transparent 2.4deg 15deg);
     -webkit-mask:radial-gradient(circle,transparent 33%,#000 36% 50%,transparent 53%);
@@ -102,10 +100,10 @@
     box-shadow:0 0 34px 10px rgba(253,182,46,.45);animation:pulse 5s ease-in-out infinite}
 
   /* distant hill with a few grazing chickens (fills the mid-ground) */
-  .backhill{position:absolute;right:7%;bottom:31%;width:238px;height:60px;z-index:0}
-  .backhill .bh{position:absolute;left:0;right:0;bottom:0;width:100%;height:100%}
-  .mh{position:absolute;bottom:26px;width:30px;height:24px}
-  .mh.a{left:26%}.mh.b{left:47%;bottom:30px;width:34px}.mh.c{left:70%}
+  .backhill{position:absolute;right:19%;bottom:28%;width:330px;height:46px;z-index:0}
+  .backhill .bh{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:100%}
+  .mh{position:absolute;bottom:22px;width:27px;height:22px}
+  .mh.a{left:24%;bottom:26px}.mh.b{left:46%;bottom:30px;width:31px}.mh.c{left:69%;bottom:25px}
 
   .cloud{position:absolute;width:92px;height:26px;background:#fff;border-radius:20px;opacity:.72;z-index:1;animation:drift 14s ease-in-out infinite alternate}
   .cloud::before,.cloud::after{content:"";position:absolute;background:#fff;border-radius:50%}
@@ -202,7 +200,7 @@
     .sun{width:90px;height:90px;top:auto;bottom:246px;right:9%}
     .sun .beam{width:132px;height:180px}
     .cloud{display:none}
-    .backhill{bottom:32%;right:9%;width:184px;height:48px}
+    .backhill{bottom:31%;right:13%;width:214px;height:34px}
     .steps{grid-template-columns:1fr}.seals .row{grid-template-columns:1fr 1fr;gap:30px}
     .cta .wrap{padding:44px 24px}footer .grid{grid-template-columns:1fr 1fr}
   }
@@ -247,8 +245,8 @@
 
     <!-- distant hill with grazing chickens -->
     <div class="backhill">
-      <svg class="bh" viewBox="0 0 240 64" preserveAspectRatio="none" aria-hidden="true">
-        <path fill="#C4E7CD" d="M0,64 C60,14 180,14 240,64 Z"/>
+      <svg class="bh" viewBox="0 0 330 46" preserveAspectRatio="none" aria-hidden="true">
+        <path fill="#C3E5CE" d="M0,46 C90,10 240,10 330,46 Z"/>
       </svg>
       <svg class="mh a" viewBox="0 0 44 34" fill="none" aria-hidden="true">
         <path d="M9 22 Q3 27 12 28 Z" fill="#A9773E"/>
