@@ -193,6 +193,8 @@
 
   @media(max-width:900px){
     .eggs .wrap,.farm .wrap{grid-template-columns:1fr;gap:36px}
+    /* drop the 1:1 aspect-ratio on mobile — it was forcing width and causing sideways scroll */
+    .eggs .photo,.farm .photo{aspect-ratio:auto;min-height:280px}
     h1{font-size:44px}nav.links{display:none}
     /* Farm scene becomes a band at the BOTTOM so it never overlaps the copy */
     .hero{min-height:660px}.hero .wrap{padding:40px 24px 330px}
