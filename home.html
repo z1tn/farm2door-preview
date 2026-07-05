@@ -84,9 +84,6 @@
   .hills path{transition:none}
 
   .sun{position:absolute;top:10%;right:14%;width:146px;height:146px;z-index:1}
-  /* soft light beams fanning down from the sun — subtle */
-  .sun .beams{position:absolute;top:50%;left:50%;width:520px;height:460px;transform:translateX(-50%);
-    pointer-events:none;filter:blur(3px);opacity:.32;z-index:-1}
   .sun .rays{position:absolute;inset:0;
     background:repeating-conic-gradient(from 0deg,var(--yolk) 0 2.4deg,transparent 2.4deg 15deg);
     -webkit-mask:radial-gradient(circle,transparent 33%,#000 36% 50%,transparent 53%);
@@ -106,13 +103,8 @@
   .cloud::before{width:42px;height:42px;top:-17px;left:14px}
   .cloud::after{width:30px;height:30px;top:-10px;left:46px}
 
-  .nest{position:absolute;right:17.5%;bottom:9%;width:142px;height:40px;border-radius:50%;
-    background:radial-gradient(closest-side,#9A652F,#5E3C1C);z-index:2;
-    box-shadow:0 7px 12px -5px rgba(0,0,0,.32),inset 0 3px 6px rgba(255,240,210,.18)}
-  .e1,.e2,.e3{position:absolute;z-index:3}
-  .e1{right:21.6%;bottom:12.8%;width:35px;height:41px;transform:rotate(-12deg)}
-  .e2{right:19%;bottom:14.4%;width:42px;height:48px;transform:rotate(2deg);z-index:4}
-  .e3{right:16.6%;bottom:12.8%;width:35px;height:41px;transform:rotate(12deg)}
+  .nestwrap{position:absolute;right:14.5%;bottom:7%;width:160px;z-index:2}
+  .nestwrap svg{width:100%;height:auto;display:block;filter:drop-shadow(0 8px 10px rgba(0,0,0,.25))}
 
   .hen{position:absolute;z-index:3;transform-origin:52% 94%}
   .hen-eat{right:34%;bottom:17%;width:124px;animation:peck 3.6s ease-in-out infinite}
@@ -196,7 +188,6 @@
     .hero{min-height:660px}.hero .wrap{padding:40px 24px 330px}
     .hills{height:250px}
     .sun{width:90px;height:90px;top:auto;bottom:250px;right:9%}
-    .sun .beams{width:330px;height:300px}
     .cloud{display:none}
     .dubai{display:none}
     .steps{grid-template-columns:1fr}.seals .row{grid-template-columns:1fr 1fr;gap:30px}
@@ -222,7 +213,7 @@
 <header class="nav"><div class="wrap">
   <div class="brand"><span class="yolk"></span>FARM2DOOR</div>
   <nav class="links"><a href="#eggs">Our eggs</a><a href="#farm">Our farm</a><a href="#how">How it works</a><a href="flow.html">Subscribe</a></nav>
-  <button class="btn">Build your box</button>
+  <button class="btn">Build your subscription</button>
 </div></header>
 
 <div class="hero">
@@ -235,22 +226,8 @@
       <path fill="#2C9457" d="M0,400 L0,352 C300,322 620,352 900,347 C1160,343 1300,354 1440,350 L1440,400 Z"/>
     </svg>
 
-    <!-- sun with soft light rays fanning down -->
-    <div class="sun">
-      <svg class="beams" viewBox="0 0 480 440" fill="none" aria-hidden="true">
-        <defs><linearGradient id="ray" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#FDB62E" stop-opacity=".5"/>
-          <stop offset="1" stop-color="#FDB62E" stop-opacity="0"/></linearGradient></defs>
-        <g stroke="url(#ray)" stroke-linecap="round">
-          <line x1="240" y1="20" x2="120" y2="430" stroke-width="4"/>
-          <line x1="240" y1="20" x2="200" y2="446" stroke-width="3.5"/>
-          <line x1="240" y1="20" x2="250" y2="450" stroke-width="4.5"/>
-          <line x1="240" y1="20" x2="300" y2="446" stroke-width="3.5"/>
-          <line x1="240" y1="20" x2="372" y2="418" stroke-width="4"/>
-        </g>
-      </svg>
-      <div class="rays"></div><div class="core"></div>
-    </div>
+    <!-- sun -->
+    <div class="sun"><div class="rays"></div><div class="core"></div></div>
 
     <!-- clouds -->
     <div class="cloud" style="top:14%;left:35%"></div>
@@ -275,11 +252,22 @@
       </g>
     </svg>
 
-    <!-- nest of brown eggs -->
-    <div class="nest"></div>
-    <div class="egg shell e1"></div>
-    <div class="egg shell e2"></div>
-    <div class="egg shell e3"></div>
+    <!-- nest with three brown eggs nestled in + aligned -->
+    <svg class="nestwrap" viewBox="0 0 164 84" fill="none" aria-hidden="true">
+      <defs><radialGradient id="eggg" cx="0.36" cy="0.28" r="0.85">
+        <stop offset="0" stop-color="#EEBC84"/><stop offset="0.5" stop-color="#C6874C"/><stop offset="1" stop-color="#9A6130"/>
+      </radialGradient></defs>
+      <!-- bowl of the nest -->
+      <ellipse cx="82" cy="52" rx="74" ry="26" fill="#5E3C1C"/>
+      <ellipse cx="82" cy="49" rx="66" ry="20" fill="#7A4E24"/>
+      <!-- three eggs, evenly spaced and centred on the nest -->
+      <ellipse cx="57" cy="42" rx="15" ry="19" fill="url(#eggg)" transform="rotate(-9 57 42)"/>
+      <ellipse cx="82" cy="39" rx="17" ry="21.5" fill="url(#eggg)" transform="rotate(3 82 39)"/>
+      <ellipse cx="107" cy="42" rx="15" ry="19" fill="url(#eggg)" transform="rotate(9 107 42)"/>
+      <!-- front lip of the bowl, drawn over the egg bottoms so they sit inside -->
+      <path d="M8,52 A74,26 0 0,1 156,52 Z" fill="#573719"/>
+      <path d="M8,52 A74,26 0 0,1 156,52" fill="none" stroke="#6E4827" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>
 
     <!-- hen with head down, eating grass -->
     <svg class="hen hen-eat" viewBox="0 0 120 100" fill="none" aria-hidden="true">
@@ -329,6 +317,24 @@
     <span class="gblade" style="right:13%;height:42px;animation-delay:.8s"></span>
     <span class="gblade" style="right:11%;height:30px;animation-delay:.35s"></span>
     <span class="gblade" style="right:5%;height:46px;animation-delay:.55s"></span>
+    <!-- extra tufts to fill the field, thicker around the hens -->
+    <span class="gblade" style="left:2%;height:30px;animation-delay:.7s"></span>
+    <span class="gblade" style="left:11%;height:38px;animation-delay:.2s"></span>
+    <span class="gblade" style="left:21%;height:44px;animation-delay:.6s"></span>
+    <span class="gblade" style="left:23%;height:30px;animation-delay:.3s"></span>
+    <span class="gblade" style="left:33%;height:40px;animation-delay:.15s"></span>
+    <span class="gblade" style="left:35%;height:52px;animation-delay:.8s"></span>
+    <span class="gblade" style="left:37%;height:32px;animation-delay:.45s"></span>
+    <span class="gblade" style="left:47%;height:36px;animation-delay:.65s"></span>
+    <span class="gblade" style="left:49%;height:48px;animation-delay:.25s"></span>
+    <span class="gblade" style="right:44%;height:34px;animation-delay:.5s"></span>
+    <span class="gblade" style="right:42%;height:46px;animation-delay:.15s"></span>
+    <span class="gblade" style="right:31%;height:40px;animation-delay:.75s"></span>
+    <span class="gblade" style="right:29%;height:30px;animation-delay:.35s"></span>
+    <span class="gblade" style="right:20%;height:44px;animation-delay:.6s"></span>
+    <span class="gblade" style="right:18%;height:34px;animation-delay:.2s"></span>
+    <span class="gblade" style="right:8%;height:50px;animation-delay:.7s"></span>
+    <span class="gblade" style="right:2%;height:32px;animation-delay:.4s"></span>
   </div>
 
   <div class="wrap"><div class="copy">
@@ -384,7 +390,7 @@
 <section id="how"><div class="wrap">
   <div class="sec-head"><span class="kick">How it works</span><h2>Fresh eggs in three simple steps</h2></div>
   <div class="steps">
-    <div class="step"><div class="num">1</div><h3>Build your box</h3><p>Choose how many cartons of fresh brown eggs you want each delivery.</p></div>
+    <div class="step"><div class="num">1</div><h3>Choose your cartons</h3><p>Choose how many cartons of fresh brown eggs you want each delivery.</p></div>
     <div class="step"><div class="num">2</div><h3>Pick days &amp; time</h3><p>Select your delivery days and a time window. Pause or skip anytime.</p></div>
     <div class="step"><div class="num">3</div><h3>We deliver fresh</h3><p>Farm-collected and pasteurised, at your door in a recyclable carton.</p></div>
   </div>
@@ -393,7 +399,7 @@
 <div class="cta" style="padding-bottom:90px"><div class="wrap"><div class="sun"></div>
   <h2>Taste the difference this week.</h2>
   <p>Build your subscription in under a minute. Skip, pause or cancel anytime.</p>
-  <button class="btn">Build your box</button>
+  <button class="btn">Build your subscription</button>
 </div></div>
 
 <footer><div class="wrap">
