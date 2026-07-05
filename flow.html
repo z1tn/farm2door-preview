@@ -407,8 +407,8 @@
         $('#barlabel').innerHTML = freqWord(state.days.length)+' &middot; billed monthly';
         $('#bartotal').innerHTML = money(p.perMonth)+'<small> /month</small>';
       } else {
-        $('#barlabel').innerHTML = state.cartons+' cartons &middot; '+money(p.perDelivery)+' per delivery';
-        $('#bartotal').innerHTML = 'Pick your days';
+        $('#barlabel').innerHTML = state.cartons+' cartons &middot; '+(state.cartons*10)+' eggs each drop';
+        $('#bartotal').innerHTML = 'Pick your days &rarr;';
       }
     } else {
       $('#barlabel').innerHTML = state.cartons+' cartons &middot; one-time';
