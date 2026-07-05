@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="robots" content="noindex, nofollow" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>FARM2DOOR — Build your subscription</title>
+<title>FARM2DOOR — Start your egg plan</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -24,10 +24,7 @@
   .dh{width:.92em;height:.8em;display:inline-block;vertical-align:-.05em;margin-right:.13em}
   .dh path{fill:currentColor}
 
-  /* phone-first shell */
-  .app{max-width:460px;margin:0 auto;min-height:100dvh;background:var(--bg);
-    display:flex;flex-direction:column;position:relative;box-shadow:0 0 60px rgba(24,33,27,.08)}
-
+  .app{max-width:460px;margin:0 auto;min-height:100dvh;background:var(--bg);display:flex;flex-direction:column;position:relative;box-shadow:0 0 60px rgba(24,33,27,.08)}
   header{position:sticky;top:0;z-index:20;background:rgba(251,250,243,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
   .hbar{display:flex;align-items:center;justify-content:space-between;padding:14px 18px 8px}
   .brand{font-family:var(--disp);font-weight:800;font-size:18px;display:flex;align-items:center;gap:8px}
@@ -44,17 +41,26 @@
   @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
   .kick{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green);margin-bottom:8px}
-  h1{font-family:var(--disp);font-weight:800;font-size:27px;line-height:1.05;letter-spacing:-.02em;margin-bottom:6px}
+  h1{font-family:var(--disp);font-weight:800;font-size:26px;line-height:1.06;letter-spacing:-.02em;margin-bottom:6px}
   .sub{font-size:14px;color:var(--ink-2);margin-bottom:22px}
 
   .card{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:20px}
   .card+.card{margin-top:14px}
   .lb{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:10px}
 
-  /* qty stepper */
+  /* plan choice cards */
+  .plan{display:block;width:100%;text-align:left;background:var(--white);border:1.5px solid var(--line);border-radius:18px;padding:20px;cursor:pointer;transition:.15s;position:relative}
+  .plan+.plan{margin-top:14px}
+  .plan:hover{border-color:var(--green);transform:translateY(-1px)}
+  .plan .ic{width:44px;height:44px;border-radius:13px;background:var(--green-soft);color:var(--green-deep);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+  .plan h3{font-family:var(--disp);font-size:19px;font-weight:700;margin-bottom:5px}
+  .plan p{font-size:13.5px;color:var(--ink-2)}
+  .plan .go{position:absolute;top:22px;right:20px;color:var(--ink-4)}
+  .badge{position:absolute;top:-9px;left:20px;background:var(--yolk);color:#5c4200;font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:3px 9px;border-radius:999px}
+
+  /* qty */
   .qty{display:flex;align-items:center;justify-content:center;gap:22px;margin:6px 0 4px}
-  .qbtn{width:52px;height:52px;border-radius:16px;border:1.5px solid var(--line);background:var(--cream);
-    font-size:26px;color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.15s;font-family:var(--sans)}
+  .qbtn{width:52px;height:52px;border-radius:16px;border:1.5px solid var(--line);background:var(--cream);font-size:26px;color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.15s;font-family:var(--sans)}
   .qbtn:hover{border-color:var(--green);color:var(--green-deep)}
   .qbtn:disabled{opacity:.35;cursor:not-allowed}
   .qval{text-align:center;min-width:96px}
@@ -67,13 +73,14 @@
 
   /* days */
   .days{display:flex;gap:7px}
-  .day{flex:1;text-align:center;padding:13px 0;border-radius:12px;border:1.5px solid var(--line);background:var(--cream);
-    font-size:13px;font-weight:600;color:var(--ink-2);cursor:pointer;transition:.14s;user-select:none}
+  .day{flex:1;text-align:center;padding:13px 0;border-radius:12px;border:1.5px solid var(--line);background:var(--cream);font-size:13px;font-weight:600;color:var(--ink-2);cursor:pointer;transition:.14s;user-select:none}
   .day.on{background:var(--green);border-color:var(--green);color:#fff}
   .freq{font-size:13px;color:var(--ink-2);margin-top:12px}
   .freq b{color:var(--green-deep)}
+  .err{color:#d4436a;font-size:12px;margin-top:6px;display:none}
+  .err.show{display:block}
 
-  /* segmented (time window) */
+  /* segmented */
   .seg{display:flex;gap:8px;flex-wrap:wrap}
   .seg .opt{flex:1;min-width:120px;padding:13px;border-radius:12px;border:1.5px solid var(--line);background:var(--cream);cursor:pointer;transition:.14s}
   .seg .opt.on{border-color:var(--green);background:var(--green-soft)}
@@ -82,18 +89,14 @@
 
   /* fields */
   .fld{margin-bottom:14px}
-  .inp,.sel,.ta{width:100%;font-family:var(--sans);font-size:15px;color:var(--ink);background:var(--cream);
-    border:1.5px solid var(--line);border-radius:12px;padding:13px 14px;transition:.14s}
+  .inp,.sel,.ta{width:100%;font-family:var(--sans);font-size:15px;color:var(--ink);background:var(--cream);border:1.5px solid var(--line);border-radius:12px;padding:13px 14px;transition:.14s}
   .inp:focus,.sel:focus,.ta:focus{outline:none;border-color:var(--green);background:#fff}
   .ta{resize:vertical;min-height:64px}
-  .phone{display:flex;align-items:stretch;gap:0}
+  .phone{display:flex;align-items:stretch}
   .phone .pfx{display:flex;align-items:center;gap:6px;padding:0 12px;background:var(--cream);border:1.5px solid var(--line);border-right:0;border-radius:12px 0 0 12px;font-size:14px;font-weight:600;white-space:nowrap}
   .phone .inp{border-radius:0 12px 12px 0}
   .invalid{border-color:#e5657f !important}
-  .err{color:#d4436a;font-size:12px;margin-top:6px;display:none}
-  .err.show{display:block}
-  .pinrow{display:flex;gap:8px;align-items:center;margin-top:8px}
-  .maplink{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:var(--green-deep);font-weight:600}
+  .maplink{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:var(--green-deep);font-weight:600;margin-top:8px}
 
   /* review */
   .rev .row{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-size:14px}
@@ -109,15 +112,14 @@
 
   /* bottom bar */
   .bar{position:fixed;left:0;right:0;bottom:0;z-index:30}
-  .barin{max-width:460px;margin:0 auto;background:var(--white);border-top:1px solid var(--line);
-    padding:12px 18px calc(12px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:12px}
+  .barin{max-width:460px;margin:0 auto;background:var(--white);border-top:1px solid var(--line);padding:12px 18px calc(12px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:12px}
   .barsum{flex:1;min-width:0}
   .barsum .a{font-size:12px;color:var(--ink-3)}
   .barsum .b{font-family:var(--disp);font-weight:800;font-size:19px;letter-spacing:-.02em}
   .barsum .b small{font-size:12px;font-weight:600;color:var(--ink-3)}
   .btn{background:var(--green);color:#fff;font-weight:600;font-size:15px;padding:14px 24px;border-radius:13px;border:none;cursor:pointer;font-family:var(--sans);transition:.16s;white-space:nowrap}
   .btn:hover{background:var(--green-deep)}
-  .btn.wide{flex:1;width:100%}
+  .btn.wide{width:100%}
   .back{background:none;border:none;color:var(--ink-2);font-size:14px;font-weight:600;cursor:pointer;padding:8px;font-family:var(--sans)}
 
   /* success */
@@ -133,14 +135,36 @@
   <header>
     <div class="hbar">
       <a class="brand" href="home.html"><span class="yolk"></span>FARM2DOOR</a>
-      <div class="stepno" id="stepno">Step 1 of 4</div>
+      <div class="stepno" id="stepno">Get started</div>
     </div>
-    <div class="prog" id="prog"><i></i><i class="off"></i><i class="off"></i><i class="off"></i></div>
+    <div class="prog" id="prog"><i class="off"></i><i class="off"></i><i class="off"></i><i class="off"></i></div>
   </header>
 
   <main>
+    <!-- PLAN CHOICE -->
+    <section class="step active" data-step="plan">
+      <div class="kick">Fresh eggs, your way</div>
+      <h1>How would you like<br>your eggs?</h1>
+      <p class="sub">Pick a plan to start. You can change or cancel anytime.</p>
+
+      <button class="plan" data-mode="sub">
+        <span class="badge">Most popular</span>
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div>
+        <h3>Monthly subscription</h3>
+        <p>Fresh eggs delivered on the days you pick, every week &mdash; <b>billed once a month</b>. Pause, skip or cancel anytime.</p>
+        <span class="go"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></span>
+      </button>
+
+      <button class="plan" data-mode="once">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2l1.5 4h9L18 2"/><rect x="4" y="6" width="16" height="15" rx="2"/><path d="M9 11h6"/></svg></div>
+        <h3>One-time order</h3>
+        <p>Just a single delivery, whenever you like. <b>Pay once</b>, no commitment.</p>
+        <span class="go"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></span>
+      </button>
+    </section>
+
     <!-- STEP 1 -->
-    <section class="step active" data-step="1">
+    <section class="step" data-step="1">
       <div class="kick">Your eggs</div>
       <h1>How many cartons<br>each delivery?</h1>
       <p class="sub">Premium free-range brown eggs &mdash; 10 medium eggs per recyclable carton.</p>
@@ -157,17 +181,29 @@
 
     <!-- STEP 2 -->
     <section class="step" data-step="2">
-      <div class="kick">Your schedule</div>
-      <h1>Which days, and<br>what time?</h1>
-      <p class="sub">Pick the days you want eggs. Pause, skip or change anytime.</p>
-      <div class="card">
-        <div class="lb">Delivery days</div>
-        <div class="days" id="days">
-          <div class="day" data-d="Sun">Su</div><div class="day on" data-d="Mon">Mo</div><div class="day" data-d="Tue">Tu</div>
-          <div class="day" data-d="Wed">We</div><div class="day on" data-d="Thu">Th</div><div class="day" data-d="Fri">Fr</div><div class="day" data-d="Sat">Sa</div>
+      <div id="s2sub">
+        <div class="kick">Your schedule</div>
+        <h1>Which days would<br>you like eggs?</h1>
+        <p class="sub">Choose the days &mdash; we deliver them every week and bill you monthly.</p>
+        <div class="card">
+          <div class="lb">Delivery days</div>
+          <div class="days" id="days">
+            <div class="day" data-d="Sun">Su</div><div class="day" data-d="Mon">Mo</div><div class="day" data-d="Tue">Tu</div>
+            <div class="day" data-d="Wed">We</div><div class="day" data-d="Thu">Th</div><div class="day" data-d="Fri">Fr</div><div class="day" data-d="Sat">Sa</div>
+          </div>
+          <div class="freq" id="freq">Tap the days you'd like your eggs delivered.</div>
+          <div class="err" id="daysErr">Pick at least one day.</div>
         </div>
-        <div class="freq" id="freq">Delivered <b>twice a week</b></div>
-        <div class="err" id="daysErr">Pick at least one day.</div>
+      </div>
+      <div id="s2once" style="display:none">
+        <div class="kick">Your delivery</div>
+        <h1>When should we<br>bring them?</h1>
+        <p class="sub">Pick a delivery date &mdash; we deliver across Dubai.</p>
+        <div class="card">
+          <div class="lb">Delivery date</div>
+          <input class="inp" type="date" id="f_date" style="color-scheme:light">
+          <div class="err" id="dateErr">Please choose a delivery date.</div>
+        </div>
       </div>
       <div class="card">
         <div class="lb">Time window</div>
@@ -203,7 +239,7 @@
         <div class="fld"><div class="lb">Building / villa &amp; street</div><textarea class="ta" id="f_addr" placeholder="Building/villa name, unit no., street&hellip;"></textarea><div class="err" id="e_addr">Please add your address.</div></div>
         <div class="fld"><div class="lb">Google Maps pin link <span style="color:var(--ink-4);font-weight:400">(recommended)</span></div>
           <input class="inp" id="f_pin" placeholder="Paste your Google Maps location link">
-          <div class="pinrow"><span class="maplink"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="2.6"/></svg>In Google Maps: Share &rarr; Copy link &rarr; paste here</span></div>
+          <div class="maplink"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="2.6"/></svg>In Google Maps: Share &rarr; Copy link &rarr; paste here</div>
         </div>
         <div class="fld"><div class="lb">Delivery notes <span style="color:var(--ink-4);font-weight:400">(optional)</span></div><input class="inp" id="f_notes" placeholder="Gate code, leave at door, etc."></div>
       </div>
@@ -212,8 +248,8 @@
     <!-- STEP 4 -->
     <section class="step" data-step="4">
       <div class="kick">Almost done</div>
-      <h1>Review your<br>subscription</h1>
-      <p class="sub">Check everything, then start. Skip, pause or cancel anytime.</p>
+      <h1 id="revh">Review your plan</h1>
+      <p class="sub" id="revsub">Check everything, then start.</p>
       <div class="card rev" id="rev"></div>
       <div class="card price" id="price"></div>
       <div class="secure">
@@ -226,15 +262,15 @@
     <section class="step" data-step="done">
       <div class="done">
         <div class="ring"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
-        <h1>You're all set!</h1>
+        <h1 id="doneh">You're all set!</h1>
         <p id="doneline">Your FARM2DOOR eggs are scheduled.</p>
-        <div class="note"><b>Heads up:</b> this is a preview &mdash; online payment (Stripe) is being set up. For now, we'll message you on WhatsApp to confirm your first delivery and payment.</div>
+        <div class="note"><b>Heads up:</b> this is a preview &mdash; online payment (Stripe) is being set up. For now, we'll message you on WhatsApp to confirm your delivery and payment.</div>
         <button class="btn wide" onclick="location.href='home.html'">Back to home</button>
       </div>
     </section>
   </main>
 
-  <div class="bar" id="bar">
+  <div class="bar" id="bar" style="display:none">
     <div class="barin">
       <button class="back" id="back" style="display:none">&larr; Back</button>
       <div class="barsum"><div class="a" id="barlabel"></div><div class="b" id="bartotal"></div></div>
@@ -244,26 +280,33 @@
 </div>
 
 <script>
+  var DH = '<svg class="dh" viewBox="0 0 344.84 299.91" aria-hidden="true"><path d="M342.14,140.96l2.7,2.54v-7.72c0-17-11.92-30.84-26.56-30.84h-23.41C278.49,36.7,222.69,0,139.68,0c-52.86,0-59.65,0-109.71,0,0,0,15.03,12.63,15.03,52.4v52.58h-27.68c-5.38,0-10.43-2.08-14.61-6.01l-2.7-2.54v7.72c0,17.01,11.92,30.84,26.56,30.84h18.44s0,29.99,0,29.99h-27.68c-5.38,0-10.43-2.07-14.61-6.01l-2.7-2.54v7.71c0,17,11.92,30.82,26.56,30.82h18.44s0,54.89,0,54.89c0,38.65-15.03,50.06-15.03,50.06h109.71c85.62,0,139.64-36.96,155.38-104.98h32.46c5.38,0,10.43,2.07,14.61,6l2.7,2.54v-7.71c0-17-11.92-30.83-26.56-30.83h-18.9c.32-4.88.49-9.87.49-15s-.18-10.11-.51-14.99h28.17c5.37,0,10.43,2.07,14.61,6.01ZM89.96,15.01h45.86c61.7,0,97.44,27.33,108.1,89.94l-153.96.02V15.01ZM136.21,284.93h-46.26v-89.98l153.87-.02c-9.97,56.66-42.07,88.38-107.61,90ZM247.34,149.96c0,5.13-.11,10.13-.34,14.99l-157.04.02v-29.99l157.05-.02c.22,4.84.33,9.83.33,15Z"/></svg>';
+  var WEEKS = 4; // billed monthly (~4 delivery weeks)
   var DAYS_ORDER = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-  var state = { step:1, cartons:2, days:['Mon','Thu'], time:'Morning',
+  var state = { step:'plan', mode:null, cartons:2, days:[], time:'Morning', date:'',
     name:'', mobile:'', area:'', addr:'', pin:'', notes:'' };
 
   function $(s){ return document.querySelector(s); }
-  var DH = '<svg class="dh" viewBox="0 0 344.84 299.91" aria-hidden="true"><path d="M342.14,140.96l2.7,2.54v-7.72c0-17-11.92-30.84-26.56-30.84h-23.41C278.49,36.7,222.69,0,139.68,0c-52.86,0-59.65,0-109.71,0,0,0,15.03,12.63,15.03,52.4v52.58h-27.68c-5.38,0-10.43-2.08-14.61-6.01l-2.7-2.54v7.72c0,17.01,11.92,30.84,26.56,30.84h18.44s0,29.99,0,29.99h-27.68c-5.38,0-10.43-2.07-14.61-6.01l-2.7-2.54v7.71c0,17,11.92,30.82,26.56,30.82h18.44s0,54.89,0,54.89c0,38.65-15.03,50.06-15.03,50.06h109.71c85.62,0,139.64-36.96,155.38-104.98h32.46c5.38,0,10.43,2.07,14.61,6l2.7,2.54v-7.71c0-17-11.92-30.83-26.56-30.83h-18.9c.32-4.88.49-9.87.49-15s-.18-10.11-.51-14.99h28.17c5.37,0,10.43,2.07,14.61,6.01ZM89.96,15.01h45.86c61.7,0,97.44,27.33,108.1,89.94l-153.96.02V15.01ZM136.21,284.93h-46.26v-89.98l153.87-.02c-9.97,56.66-42.07,88.38-107.61,90ZM247.34,149.96c0,5.13-.11,10.13-.34,14.99l-157.04.02v-29.99l157.05-.02c.22,4.84.33,9.83.33,15Z"/></svg>';
-  function fmt(n){ return DH + n.toLocaleString('en-US'); }
-  function freqWord(n){ return n===0?'no days':n===1?'once a week':n===2?'twice a week':n===7?'every day':n+'&times; a week'; }
-  function daysLabel(){
-    var d = DAYS_ORDER.filter(function(x){return state.days.indexOf(x)>-1;});
-    if(!d.length) return 'Pick your days';
-    if(d.length<=3) return d.join(' &middot; ');
-    return d.length + ' days';
-  }
+  function money(n){ return DH + n.toLocaleString('en-US'); }
+  function freqWord(n){ return n===0?'':n===1?'once a week':n===2?'twice a week':n===7?'every day':n+' days a week'; }
+
   function price(){
     var eggs = state.cartons*30;
     var fee = state.cartons>=3 ? 10 : 25;
     var perDelivery = eggs+fee;
-    var perWeek = perDelivery*state.days.length;
-    return {eggs:eggs,fee:fee,perDelivery:perDelivery,perWeek:perWeek,deliveries:state.days.length};
+    var perMonth = perDelivery*state.days.length*WEEKS;
+    var deliveriesMonth = state.days.length*WEEKS;
+    return {eggs:eggs, fee:fee, perDelivery:perDelivery, perMonth:perMonth, deliveriesMonth:deliveriesMonth};
+  }
+
+  // plan choice
+  document.querySelectorAll('.plan').forEach(function(b){
+    b.onclick = function(){ state.mode = b.dataset.mode; setupMode(); show(1); };
+  });
+  function setupMode(){
+    var sub = state.mode==='sub';
+    $('#s2sub').style.display = sub ? '' : 'none';
+    $('#s2once').style.display = sub ? 'none' : '';
   }
 
   // Step 1: quantity
@@ -279,14 +322,15 @@
   $('#minus').onclick = function(){ if(state.cartons>1){state.cartons--; renderQty(); syncBar();} };
   $('#plus').onclick  = function(){ if(state.cartons<10){state.cartons++; renderQty(); syncBar();} };
 
-  // Step 2: days + time
+  // Step 2
   $('#days').onclick = function(e){
     var el = e.target.closest('.day'); if(!el) return;
     var d = el.dataset.d;
     if(state.days.indexOf(d)>-1) state.days = state.days.filter(function(x){return x!==d;});
     else state.days.push(d);
     el.classList.toggle('on');
-    $('#freq').innerHTML = state.days.length ? 'Delivered <b>'+freqWord(state.days.length)+'</b>' : 'Pick at least one day';
+    var n = state.days.length;
+    $('#freq').innerHTML = n ? 'Delivered <b>'+freqWord(n)+'</b> &middot; billed monthly' : "Tap the days you'd like your eggs delivered.";
     $('#daysErr').classList.remove('show');
     syncBar();
   };
@@ -296,20 +340,19 @@
     for(var i=0;i<opts.length;i++) opts[i].classList.remove('on');
     el.classList.add('on'); state.time = el.dataset.t;
   };
+  $('#f_date').onchange = function(){ state.date = this.value; $('#dateErr').classList.remove('show'); };
 
-  // Step 3: fields
+  // Step 3 fields
   function bindField(id,key,digitsOnly,errId){
     var el = $(id);
     el.oninput = function(){
       if(digitsOnly){ el.value = el.value.replace(/\D/g,''); }
-      state[key] = el.value;
-      el.classList.remove('invalid');
+      state[key] = el.value; el.classList.remove('invalid');
       if(errId) $(errId).classList.remove('show');
     };
   }
   bindField('#f_name','name',false,'#e_name');
   bindField('#f_mobile','mobile',true,'#e_mobile');
-  bindField('#f_area','area',false,'#e_area');
   bindField('#f_addr','addr',false,'#e_addr');
   bindField('#f_pin','pin',false);
   bindField('#f_notes','notes',false);
@@ -317,68 +360,100 @@
 
   function validateStep3(){
     var ok = true;
-    var req = [['#f_name','name','#e_name'],['#f_area','area','#e_area'],['#f_addr','addr','#e_addr']];
-    req.forEach(function(r){
+    [['#f_name','name','#e_name'],['#f_area','area','#e_area'],['#f_addr','addr','#e_addr']].forEach(function(r){
       if(!String(state[r[1]]).trim()){ $(r[0]).classList.add('invalid'); $(r[2]).classList.add('show'); ok=false; }
     });
     if(state.mobile.length!==9){ $('#f_mobile').classList.add('invalid'); $('#e_mobile').classList.add('show'); ok=false; }
     return ok;
   }
 
-  // Step 4: review
+  // Step 4 review
   function row(k,v){ return '<div class="row"><span>'+k+'</span><b>'+v+'</b></div>'; }
   function prow(k,v){ return '<div class="row"><span>'+k+'</span><span>'+v+'</span></div>'; }
   function renderReview(){
     var p = price();
-    var d = DAYS_ORDER.filter(function(x){return state.days.indexOf(x)>-1;}).join(', ');
+    var sub = state.mode==='sub';
+    $('#revh').textContent = sub ? 'Review your subscription' : 'Review your order';
+    $('#revsub').textContent = sub ? 'Billed monthly. Skip, pause or cancel anytime.' : 'A single delivery. Pay once.';
+    var when = sub
+      ? DAYS_ORDER.filter(function(x){return state.days.indexOf(x)>-1;}).join(', ')+' &middot; '+freqWord(state.days.length)
+      : (state.date || '&mdash;');
     $('#rev').innerHTML =
       row('Eggs', state.cartons+' cartons &middot; '+(state.cartons*10)+' eggs') +
-      row('Schedule', d+' &middot; '+freqWord(state.days.length)) +
+      row(sub?'Every week':'Delivery date', when) +
       row('Time', state.time) +
       row('Deliver to', (state.name||'&mdash;')+'<br><span style="color:var(--ink-3);font-weight:400">'+[state.area,state.addr].filter(Boolean).join(', ')+'</span>') +
       row('Mobile', state.mobile ? '+971 '+state.mobile : '&mdash;');
-    $('#price').innerHTML =
-      prow('Eggs &mdash; '+state.cartons+' &times; '+DH+'30', fmt(p.eggs)) +
-      prow('Delivery fee &middot; per drop', fmt(p.fee)) +
-      prow('<b style="color:var(--ink)">Per delivery</b>', '<b>'+fmt(p.perDelivery)+'</b>') +
-      '<div class="tot"><span class="l">Per week &middot; '+p.deliveries+' '+(p.deliveries===1?'delivery':'deliveries')+'</span><span class="p">'+fmt(p.perWeek)+'<small> /wk</small></span></div>';
+
+    if(sub){
+      $('#price').innerHTML =
+        prow('Eggs &mdash; '+state.cartons+' &times; '+DH+'30', money(p.eggs)) +
+        prow('Delivery &middot; per drop', money(p.fee)) +
+        prow('<b style="color:var(--ink)">Per delivery</b>', '<b>'+money(p.perDelivery)+'</b>') +
+        prow('Deliveries a month', '&times; '+p.deliveriesMonth) +
+        '<div class="tot"><span class="l">Billed monthly</span><span class="p">'+money(p.perMonth)+'<small> /month</small></span></div>';
+    } else {
+      $('#price').innerHTML =
+        prow('Eggs &mdash; '+state.cartons+' &times; '+DH+'30', money(p.eggs)) +
+        prow('Delivery fee', money(p.fee)) +
+        '<div class="tot"><span class="l">One-time total</span><span class="p">'+money(p.perDelivery)+'</span></div>';
+    }
   }
 
   function syncBar(){
     var p = price();
-    $('#barlabel').innerHTML = daysLabel()+' &middot; '+freqWord(state.days.length);
-    $('#bartotal').innerHTML = fmt(p.perWeek)+'<small> /wk</small>';
+    if(state.mode==='sub'){
+      if(state.days.length){
+        $('#barlabel').innerHTML = freqWord(state.days.length)+' &middot; billed monthly';
+        $('#bartotal').innerHTML = money(p.perMonth)+'<small> /month</small>';
+      } else {
+        $('#barlabel').innerHTML = state.cartons+' cartons &middot; '+money(p.perDelivery)+' per delivery';
+        $('#bartotal').innerHTML = 'Pick your days';
+      }
+    } else {
+      $('#barlabel').innerHTML = state.cartons+' cartons &middot; one-time';
+      $('#bartotal').innerHTML = money(p.perDelivery);
+    }
   }
 
   function show(step){
     state.step = step;
     var secs = document.querySelectorAll('.step');
     for(var i=0;i<secs.length;i++) secs[i].classList.toggle('active', secs[i].dataset.step==String(step));
-    var isDone = step==='done';
-    $('#bar').style.display = isDone ? 'none' : '';
+    var isPlan = step==='plan', isDone = step==='done';
+    $('#bar').style.display = (isPlan||isDone) ? 'none' : '';
+    if(isPlan){ $('#stepno').textContent='Get started'; window.scrollTo(0,0); return; }
     if(isDone){ window.scrollTo(0,0); return; }
     $('#stepno').textContent = 'Step '+step+' of 4';
     var bars = document.querySelectorAll('#prog i');
     for(var j=0;j<bars.length;j++) bars[j].classList.toggle('off', j>=step);
-    $('#back').style.display = step>1 ? '' : 'none';
-    $('#next').textContent = step===4 ? 'Confirm & subscribe' : (step===3 ? 'Review order' : 'Continue');
+    $('#back').style.display = '';
+    $('#next').textContent = step===4 ? (state.mode==='sub'?'Start subscription':'Place order') : (step===3 ? 'Review' : 'Continue');
     if(step===4) renderReview();
+    syncBar();
     window.scrollTo(0,0);
   }
 
   $('#next').onclick = function(){
     var s = state.step;
-    if(s===2 && state.days.length===0){ $('#daysErr').classList.add('show'); return; }
+    if(s===2 && state.mode==='sub' && state.days.length===0){ $('#daysErr').classList.add('show'); return; }
+    if(s===2 && state.mode==='once' && !state.date){ $('#dateErr').classList.add('show'); return; }
     if(s===3 && !validateStep3()) return;
     if(s===4){
-      $('#doneline').innerHTML = '<b>'+state.cartons+' cartons</b>, '+freqWord(state.days.length)+', '+state.time.toLowerCase()+' &mdash; to '+(state.area||'your address')+'.';
+      $('#doneh').textContent = state.mode==='sub' ? 'Subscription started!' : "Order placed!";
+      var when = state.mode==='sub' ? freqWord(state.days.length) : ('on '+(state.date||'your date'));
+      $('#doneline').innerHTML = '<b>'+state.cartons+' cartons</b>, '+when+', '+state.time.toLowerCase()+' &mdash; to '+(state.area||'your address')+'.';
       show('done'); return;
     }
     show(s+1);
   };
-  $('#back').onclick = function(){ if(state.step>1) show(state.step-1); };
+  $('#back').onclick = function(){ if(state.step===1) show('plan'); else if(typeof state.step==='number') show(state.step-1); };
 
-  renderQty(); syncBar(); show(1);
+  // init
+  renderQty();
+  // one-time date: no earlier than tomorrow
+  (function(){ var d=new Date(); d.setDate(d.getDate()+1); var mm=('0'+(d.getMonth()+1)).slice(-2), dd=('0'+d.getDate()).slice(-2); $('#f_date').min = d.getFullYear()+'-'+mm+'-'+dd; })();
+  show('plan');
 </script>
 </body>
 </html>
