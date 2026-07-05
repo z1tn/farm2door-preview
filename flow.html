@@ -20,6 +20,9 @@
   html{-webkit-text-size-adjust:100%}
   body{font-family:var(--sans);color:var(--ink);background:var(--bg2);line-height:1.5;-webkit-font-smoothing:antialiased}
   a{color:inherit;text-decoration:none}
+  /* new UAE Dirham symbol (matches the Maali app) */
+  .dh{width:.92em;height:.8em;display:inline-block;vertical-align:-.05em;margin-right:.13em}
+  .dh path{fill:currentColor}
 
   /* phone-first shell */
   .app{max-width:460px;margin:0 auto;min-height:100dvh;background:var(--bg);
@@ -148,7 +151,7 @@
           <button class="qbtn" id="plus" aria-label="More">+</button>
         </div>
         <div class="qeggs" id="qeggs">That's <b>20 eggs</b> every delivery</div>
-        <div class="tip" id="tip">Order <b>3+ cartons</b> and delivery is only <b>AED 10</b> per drop (instead of AED 25).</div>
+        <div class="tip" id="tip"></div>
       </div>
     </section>
 
@@ -234,7 +237,7 @@
   <div class="bar" id="bar">
     <div class="barin">
       <button class="back" id="back" style="display:none">&larr; Back</button>
-      <div class="barsum"><div class="a" id="barlabel">Mon &middot; Thu &middot; twice a week</div><div class="b" id="bartotal">AED&nbsp;170<small> /wk</small></div></div>
+      <div class="barsum"><div class="a" id="barlabel"></div><div class="b" id="bartotal"></div></div>
       <button class="btn" id="next">Continue</button>
     </div>
   </div>
@@ -246,7 +249,8 @@
     name:'', mobile:'', area:'', addr:'', pin:'', notes:'' };
 
   function $(s){ return document.querySelector(s); }
-  function fmt(n){ return 'AED&nbsp;' + n.toLocaleString('en-US'); }
+  var DH = '<svg class="dh" viewBox="0 0 344.84 299.91" aria-hidden="true"><path d="M342.14,140.96l2.7,2.54v-7.72c0-17-11.92-30.84-26.56-30.84h-23.41C278.49,36.7,222.69,0,139.68,0c-52.86,0-59.65,0-109.71,0,0,0,15.03,12.63,15.03,52.4v52.58h-27.68c-5.38,0-10.43-2.08-14.61-6.01l-2.7-2.54v7.72c0,17.01,11.92,30.84,26.56,30.84h18.44s0,29.99,0,29.99h-27.68c-5.38,0-10.43-2.07-14.61-6.01l-2.7-2.54v7.71c0,17,11.92,30.82,26.56,30.82h18.44s0,54.89,0,54.89c0,38.65-15.03,50.06-15.03,50.06h109.71c85.62,0,139.64-36.96,155.38-104.98h32.46c5.38,0,10.43,2.07,14.61,6l2.7,2.54v-7.71c0-17-11.92-30.83-26.56-30.83h-18.9c.32-4.88.49-9.87.49-15s-.18-10.11-.51-14.99h28.17c5.37,0,10.43,2.07,14.61,6.01ZM89.96,15.01h45.86c61.7,0,97.44,27.33,108.1,89.94l-153.96.02V15.01ZM136.21,284.93h-46.26v-89.98l153.87-.02c-9.97,56.66-42.07,88.38-107.61,90ZM247.34,149.96c0,5.13-.11,10.13-.34,14.99l-157.04.02v-29.99l157.05-.02c.22,4.84.33,9.83.33,15Z"/></svg>';
+  function fmt(n){ return DH + n.toLocaleString('en-US'); }
   function freqWord(n){ return n===0?'no days':n===1?'once a week':n===2?'twice a week':n===7?'every day':n+'&times; a week'; }
   function daysLabel(){
     var d = DAYS_ORDER.filter(function(x){return state.days.indexOf(x)>-1;});
@@ -269,8 +273,8 @@
     $('#minus').disabled = state.cartons<=1;
     $('#plus').disabled = state.cartons>=10;
     var tip = $('#tip');
-    if(state.cartons>=3){ tip.className='tip good'; tip.innerHTML='Nice &mdash; delivery is only <b>AED 10</b> per drop at 3+ cartons.'; }
-    else { tip.className='tip'; tip.innerHTML='Order <b>3+ cartons</b> and delivery drops to <b>AED 10</b> (instead of AED 25).'; }
+    if(state.cartons>=3){ tip.className='tip good'; tip.innerHTML='Nice &mdash; delivery is only <b>'+DH+'10</b> per drop at 3+ cartons.'; }
+    else { tip.className='tip'; tip.innerHTML='Order <b>3+ cartons</b> and delivery drops to <b>'+DH+'10</b> (instead of '+DH+'25).'; }
   }
   $('#minus').onclick = function(){ if(state.cartons>1){state.cartons--; renderQty(); syncBar();} };
   $('#plus').onclick  = function(){ if(state.cartons<10){state.cartons++; renderQty(); syncBar();} };
@@ -334,7 +338,7 @@
       row('Deliver to', (state.name||'&mdash;')+'<br><span style="color:var(--ink-3);font-weight:400">'+[state.area,state.addr].filter(Boolean).join(', ')+'</span>') +
       row('Mobile', state.mobile ? '+971 '+state.mobile : '&mdash;');
     $('#price').innerHTML =
-      prow('Eggs &mdash; '+state.cartons+' &times; AED 30', fmt(p.eggs)) +
+      prow('Eggs &mdash; '+state.cartons+' &times; '+DH+'30', fmt(p.eggs)) +
       prow('Delivery fee &middot; per drop', fmt(p.fee)) +
       prow('<b style="color:var(--ink)">Per delivery</b>', '<b>'+fmt(p.perDelivery)+'</b>') +
       '<div class="tot"><span class="l">Per week &middot; '+p.deliveries+' '+(p.deliveries===1?'delivery':'deliveries')+'</span><span class="p">'+fmt(p.perWeek)+'<small> /wk</small></span></div>';
