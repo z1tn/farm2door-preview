@@ -75,10 +75,21 @@
   .days{display:flex;gap:7px}
   .day{flex:1;text-align:center;padding:13px 0;border-radius:12px;border:1.5px solid var(--line);background:var(--cream);font-size:13px;font-weight:600;color:var(--ink-2);cursor:pointer;transition:.14s;user-select:none}
   .day.on{background:var(--green);border-color:var(--green);color:#fff}
-  .freq{font-size:13px;color:var(--ink-2);margin-top:12px}
+  .freq{font-size:13px;color:var(--ink-2);margin-top:14px}
   .freq b{color:var(--green-deep)}
   .err{color:#d4436a;font-size:12px;margin-top:6px;display:none}
   .err.show{display:block}
+
+  /* per-day carton steppers */
+  #dayqtys:not(:empty){margin-top:14px;border-top:1px solid var(--line)}
+  .dayrow{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+  .dayrow:last-child{border-bottom:0}
+  .dayrow .dn{font-size:14px;font-weight:600;flex:0 0 78px}
+  .dstep{display:flex;align-items:center;gap:9px}
+  .qbtn.sm{width:34px;height:34px;border-radius:11px;font-size:19px}
+  .dcnt{font-family:var(--disp);font-weight:800;font-size:20px;min-width:18px;text-align:center}
+  .deggs{margin-left:auto;text-align:right;font-size:11.5px;color:var(--ink-3);line-height:1.35}
+  .deggs .feego{color:var(--green-deep);font-weight:600}
 
   /* segmented */
   .seg{display:flex;gap:8px;flex-wrap:wrap}
@@ -165,36 +176,42 @@
 
     <!-- STEP 1 -->
     <section class="step" data-step="1">
-      <div class="kick">Your eggs</div>
-      <h1>How many cartons<br>each delivery?</h1>
-      <p class="sub">Premium free-range brown eggs &mdash; 10 medium eggs per recyclable carton.</p>
-      <div class="card">
-        <div class="qty">
-          <button class="qbtn" id="minus" aria-label="Fewer">&minus;</button>
-          <div class="qval"><div class="qnum" id="qnum">2</div><div class="qcap">cartons</div></div>
-          <button class="qbtn" id="plus" aria-label="More">+</button>
-        </div>
-        <div class="qeggs" id="qeggs">That's <b>20 eggs</b> every delivery</div>
-        <div class="tip" id="tip"></div>
-      </div>
-    </section>
-
-    <!-- STEP 2 -->
-    <section class="step" data-step="2">
-      <div id="s2sub">
-        <div class="kick">Your schedule</div>
-        <h1>Which days would<br>you like eggs?</h1>
-        <p class="sub">Choose the days &mdash; we deliver them every week and bill you monthly.</p>
+      <!-- subscription: days + per-day cartons -->
+      <div id="s1sub">
+        <div class="kick">Build your week</div>
+        <h1>Which days, and<br>how many each drop?</h1>
+        <p class="sub">Pick your delivery days, then set how many cartons land on each &mdash; split them across days to keep every egg fresh.</p>
         <div class="card">
           <div class="lb">Delivery days</div>
           <div class="days" id="days">
             <div class="day" data-d="Sun">Su</div><div class="day" data-d="Mon">Mo</div><div class="day" data-d="Tue">Tu</div>
             <div class="day" data-d="Wed">We</div><div class="day" data-d="Thu">Th</div><div class="day" data-d="Fri">Fr</div><div class="day" data-d="Sat">Sa</div>
           </div>
-          <div class="freq" id="freq">Tap the days you'd like your eggs delivered.</div>
+          <div id="dayqtys"></div>
+          <div class="freq" id="freq">Tap the days you'd like eggs, then set how many.</div>
           <div class="err" id="daysErr">Pick at least one day.</div>
         </div>
+        <div class="tip" id="subtip"></div>
       </div>
+      <!-- one-time: single quantity -->
+      <div id="s1once" style="display:none">
+        <div class="kick">Your eggs</div>
+        <h1>How many cartons?</h1>
+        <p class="sub">Premium free-range brown eggs &mdash; 10 medium eggs per recyclable carton.</p>
+        <div class="card">
+          <div class="qty">
+            <button class="qbtn" id="minus" aria-label="Fewer">&minus;</button>
+            <div class="qval"><div class="qnum" id="qnum">2</div><div class="qcap">cartons</div></div>
+            <button class="qbtn" id="plus" aria-label="More">+</button>
+          </div>
+          <div class="qeggs" id="qeggs">That's <b>20 eggs</b> in your delivery</div>
+          <div class="tip" id="tip"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 2 -->
+    <section class="step" data-step="2">
       <div id="s2once" style="display:none">
         <div class="kick">Your delivery</div>
         <h1>When should we<br>bring them?</h1>
@@ -204,6 +221,11 @@
           <input class="inp" type="date" id="f_date" style="color-scheme:light">
           <div class="err" id="dateErr">Please choose a delivery date.</div>
         </div>
+      </div>
+      <div id="s2sub" style="display:none">
+        <div class="kick">Your schedule</div>
+        <h1>What time works<br>best for you?</h1>
+        <p class="sub">We'll bring every drop within this window.</p>
       </div>
       <div class="card">
         <div class="lb">Time window</div>
@@ -281,59 +303,108 @@
 
 <script>
   var DH = '<svg class="dh" viewBox="0 0 344.84 299.91" aria-hidden="true"><path d="M342.14,140.96l2.7,2.54v-7.72c0-17-11.92-30.84-26.56-30.84h-23.41C278.49,36.7,222.69,0,139.68,0c-52.86,0-59.65,0-109.71,0,0,0,15.03,12.63,15.03,52.4v52.58h-27.68c-5.38,0-10.43-2.08-14.61-6.01l-2.7-2.54v7.72c0,17.01,11.92,30.84,26.56,30.84h18.44s0,29.99,0,29.99h-27.68c-5.38,0-10.43-2.07-14.61-6.01l-2.7-2.54v7.71c0,17,11.92,30.82,26.56,30.82h18.44s0,54.89,0,54.89c0,38.65-15.03,50.06-15.03,50.06h109.71c85.62,0,139.64-36.96,155.38-104.98h32.46c5.38,0,10.43,2.07,14.61,6l2.7,2.54v-7.71c0-17-11.92-30.83-26.56-30.83h-18.9c.32-4.88.49-9.87.49-15s-.18-10.11-.51-14.99h28.17c5.37,0,10.43,2.07,14.61,6.01ZM89.96,15.01h45.86c61.7,0,97.44,27.33,108.1,89.94l-153.96.02V15.01ZM136.21,284.93h-46.26v-89.98l153.87-.02c-9.97,56.66-42.07,88.38-107.61,90ZM247.34,149.96c0,5.13-.11,10.13-.34,14.99l-157.04.02v-29.99l157.05-.02c.22,4.84.33,9.83.33,15Z"/></svg>';
-  var WEEKS = 4; // billed monthly (~4 delivery weeks)
+  var WEEKS = 4;                         // billed monthly (~4 delivery weeks)
+  var CARTON = 22;                       // Dh per carton (10 eggs)
+  var EGGS_PER = 10;                     // eggs per carton
+  var FEE_LOW = 10, FEE_HIGH = 25;       // per-drop delivery fee
+  var FEE_MIN_CARTONS = 3;               // 3+ cartons on a drop -> cheaper delivery
   var DAYS_ORDER = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-  var state = { step:'plan', mode:null, cartons:2, days:[], time:'Morning', date:'',
+  var FULLDAY = {Sun:'Sunday',Mon:'Monday',Tue:'Tuesday',Wed:'Wednesday',Thu:'Thursday',Fri:'Friday',Sat:'Saturday'};
+  // subscription: dayQty maps a chosen day -> cartons on that day. one-time: cartons.
+  var state = { step:'plan', mode:null, cartons:2, dayQty:{}, time:'Morning', date:'',
     name:'', mobile:'', area:'', addr:'', pin:'', notes:'' };
 
   function $(s){ return document.querySelector(s); }
   function money(n){ return DH + n.toLocaleString('en-US'); }
-  function freqWord(n){ return n===0?'':n===1?'once a week':n===2?'twice a week':n===7?'every day':n+' days a week'; }
+  function dropFee(cartons){ return cartons >= FEE_MIN_CARTONS ? FEE_LOW : FEE_HIGH; }
+  function chosenDays(){ return DAYS_ORDER.filter(function(d){ return state.dayQty[d]>0; }); }
 
-  function price(){
-    var eggs = state.cartons*30;
-    var fee = state.cartons>=3 ? 10 : 25;
-    var perDelivery = eggs+fee;
-    var perMonth = perDelivery*state.days.length*WEEKS;
-    var deliveriesMonth = state.days.length*WEEKS;
-    return {eggs:eggs, fee:fee, perDelivery:perDelivery, perMonth:perMonth, deliveriesMonth:deliveriesMonth};
+  // ---- pricing ----
+  function subPrice(){
+    var totalCartons=0, eggsCost=0, deliveryWeek=0, drops=0;
+    chosenDays().forEach(function(d){
+      var q = state.dayQty[d];
+      drops++; totalCartons += q;
+      eggsCost += q*CARTON;
+      deliveryWeek += dropFee(q);
+    });
+    var perWeek = eggsCost + deliveryWeek;
+    return {totalCartons:totalCartons, eggsCost:eggsCost, deliveryWeek:deliveryWeek,
+      drops:drops, perWeek:perWeek, perMonth:perWeek*WEEKS};
+  }
+  function oncePrice(){
+    var eggs = state.cartons*CARTON;
+    var fee = dropFee(state.cartons);
+    return {eggs:eggs, fee:fee, total:eggs+fee};
   }
 
-  // plan choice
+  // ---- plan choice ----
   document.querySelectorAll('.plan').forEach(function(b){
     b.onclick = function(){ state.mode = b.dataset.mode; setupMode(); show(1); };
   });
   function setupMode(){
     var sub = state.mode==='sub';
+    $('#s1sub').style.display = sub ? '' : 'none';
+    $('#s1once').style.display = sub ? 'none' : '';
     $('#s2sub').style.display = sub ? '' : 'none';
     $('#s2once').style.display = sub ? 'none' : '';
   }
 
-  // Step 1: quantity
+  // ---- Step 1 (one-time): quantity ----
   function renderQty(){
     $('#qnum').textContent = state.cartons;
-    $('#qeggs').innerHTML = "That's <b>"+(state.cartons*10)+" eggs</b> every delivery";
+    $('#qeggs').innerHTML = "That's <b>"+(state.cartons*EGGS_PER)+" eggs</b> in your delivery";
     $('#minus').disabled = state.cartons<=1;
     $('#plus').disabled = state.cartons>=10;
     var tip = $('#tip');
-    if(state.cartons>=3){ tip.className='tip good'; tip.innerHTML='Nice &mdash; delivery is only <b>'+DH+'10</b> per drop at 3+ cartons.'; }
-    else { tip.className='tip'; tip.innerHTML='Order <b>3+ cartons</b> and delivery drops to <b>'+DH+'10</b> (instead of '+DH+'25).'; }
+    if(state.cartons>=FEE_MIN_CARTONS){ tip.className='tip good'; tip.innerHTML='Nice &mdash; delivery is only <b>'+DH+FEE_LOW+'</b> at '+FEE_MIN_CARTONS+'+ cartons.'; }
+    else { tip.className='tip'; tip.innerHTML='Order <b>'+FEE_MIN_CARTONS+'+ cartons</b> and delivery drops to <b>'+DH+FEE_LOW+'</b> (instead of '+DH+FEE_HIGH+').'; }
   }
   $('#minus').onclick = function(){ if(state.cartons>1){state.cartons--; renderQty(); syncBar();} };
   $('#plus').onclick  = function(){ if(state.cartons<10){state.cartons++; renderQty(); syncBar();} };
 
-  // Step 2
+  // ---- Step 1 (subscription): days + per-day cartons ----
+  function renderDayQtys(){
+    var wrap = $('#dayqtys'), html='';
+    var chosen = chosenDays();
+    chosen.forEach(function(d){
+      var q = state.dayQty[d];
+      var fee = dropFee(q);
+      html += '<div class="dayrow">'+
+        '<div class="dn">'+FULLDAY[d]+'</div>'+
+        '<div class="dstep">'+
+          '<button class="qbtn sm" data-day="'+d+'" data-act="dec"'+(q<=1?' disabled':'')+' aria-label="Fewer">&minus;</button>'+
+          '<span class="dcnt">'+q+'</span>'+
+          '<button class="qbtn sm" data-day="'+d+'" data-act="inc"'+(q>=10?' disabled':'')+' aria-label="More">+</button>'+
+        '</div>'+
+        '<div class="deggs">'+(q*EGGS_PER)+' eggs<br><span class="'+(fee===FEE_LOW?'feego':'')+'">'+money(fee)+' delivery</span></div>'+
+      '</div>';
+    });
+    wrap.innerHTML = html;
+    if(chosen.length){
+      var p = subPrice();
+      $('#freq').innerHTML = '<b>'+p.totalCartons+' cartons</b>/week &middot; '+p.drops+' drop'+(p.drops>1?'s':'')+' &middot; billed monthly';
+    } else {
+      $('#freq').innerHTML = "Tap the days you'd like eggs, then set how many.";
+    }
+  }
   $('#days').onclick = function(e){
     var el = e.target.closest('.day'); if(!el) return;
     var d = el.dataset.d;
-    if(state.days.indexOf(d)>-1) state.days = state.days.filter(function(x){return x!==d;});
-    else state.days.push(d);
-    el.classList.toggle('on');
-    var n = state.days.length;
-    $('#freq').innerHTML = n ? 'Delivered <b>'+freqWord(n)+'</b> &middot; billed monthly' : "Tap the days you'd like your eggs delivered.";
+    if(state.dayQty[d]){ delete state.dayQty[d]; el.classList.remove('on'); }
+    else { state.dayQty[d] = 1; el.classList.add('on'); }
     $('#daysErr').classList.remove('show');
-    syncBar();
+    renderDayQtys(); syncBar();
   };
+  $('#dayqtys').onclick = function(e){
+    var b = e.target.closest('button'); if(!b) return;
+    var d = b.dataset.day, q = state.dayQty[d]||1;
+    if(b.dataset.act==='inc' && q<10) state.dayQty[d] = q+1;
+    if(b.dataset.act==='dec' && q>1)  state.dayQty[d] = q-1;
+    renderDayQtys(); syncBar();
+  };
+
+  // ---- Step 2 ----
   $('#seg').onclick = function(e){
     var el = e.target.closest('.opt'); if(!el) return;
     var opts = document.querySelectorAll('#seg .opt');
@@ -342,7 +413,7 @@
   };
   $('#f_date').onchange = function(){ state.date = this.value; $('#dateErr').classList.remove('show'); };
 
-  // Step 3 fields
+  // ---- Step 3 fields ----
   function bindField(id,key,digitsOnly,errId){
     var el = $(id);
     el.oninput = function(){
@@ -367,52 +438,62 @@
     return ok;
   }
 
-  // Step 4 review
+  // ---- Step 4 review ----
   function row(k,v){ return '<div class="row"><span>'+k+'</span><b>'+v+'</b></div>'; }
   function prow(k,v){ return '<div class="row"><span>'+k+'</span><span>'+v+'</span></div>'; }
   function renderReview(){
-    var p = price();
     var sub = state.mode==='sub';
     $('#revh').textContent = sub ? 'Review your subscription' : 'Review your order';
     $('#revsub').textContent = sub ? 'Billed monthly. Skip, pause or cancel anytime.' : 'A single delivery. Pay once.';
-    var when = sub
-      ? DAYS_ORDER.filter(function(x){return state.days.indexOf(x)>-1;}).join(', ')+' &middot; '+freqWord(state.days.length)
-      : (state.date || '&mdash;');
-    $('#rev').innerHTML =
-      row('Eggs', state.cartons+' cartons &middot; '+(state.cartons*10)+' eggs') +
-      row(sub?'Every week':'Delivery date', when) +
-      row('Time', state.time) +
-      row('Deliver to', (state.name||'&mdash;')+'<br><span style="color:var(--ink-3);font-weight:400">'+[state.area,state.addr].filter(Boolean).join(', ')+'</span>') +
-      row('Mobile', state.mobile ? '+971 '+state.mobile : '&mdash;');
+    var addrLine = (state.name||'&mdash;')+'<br><span style="color:var(--ink-3);font-weight:400">'+[state.area,state.addr].filter(Boolean).join(', ')+'</span>';
+    var mobLine = state.mobile ? '+971 '+state.mobile : '&mdash;';
 
     if(sub){
+      var p = subPrice();
+      var schedule = chosenDays().map(function(d){
+        return FULLDAY[d]+' &mdash; '+state.dayQty[d]+' carton'+(state.dayQty[d]>1?'s':'');
+      }).join('<br>');
+      $('#rev').innerHTML =
+        row('Weekly eggs', p.totalCartons+' cartons &middot; '+(p.totalCartons*EGGS_PER)+' eggs') +
+        row('Schedule', schedule) +
+        row('Time', state.time) +
+        row('Deliver to', addrLine) +
+        row('Mobile', mobLine);
       $('#price').innerHTML =
-        prow('Eggs &mdash; '+state.cartons+' &times; '+DH+'30', money(p.eggs)) +
-        prow('Delivery &middot; per drop', money(p.fee)) +
-        prow('<b style="color:var(--ink)">Per delivery</b>', '<b>'+money(p.perDelivery)+'</b>') +
-        prow('Deliveries a month', '&times; '+p.deliveriesMonth) +
+        prow('Eggs &mdash; '+p.totalCartons+' &times; '+DH+CARTON+' /week', money(p.eggsCost)) +
+        prow('Delivery &middot; '+p.drops+' drop'+(p.drops>1?'s':'')+' /week', money(p.deliveryWeek)) +
+        prow('<b style="color:var(--ink)">Per week</b>', '<b>'+money(p.perWeek)+'</b>') +
+        prow('Weeks billed', '&times; '+WEEKS) +
         '<div class="tot"><span class="l">Billed monthly</span><span class="p">'+money(p.perMonth)+'<small> /month</small></span></div>';
     } else {
+      var o = oncePrice();
+      $('#rev').innerHTML =
+        row('Eggs', state.cartons+' cartons &middot; '+(state.cartons*EGGS_PER)+' eggs') +
+        row('Delivery date', state.date || '&mdash;') +
+        row('Time', state.time) +
+        row('Deliver to', addrLine) +
+        row('Mobile', mobLine);
       $('#price').innerHTML =
-        prow('Eggs &mdash; '+state.cartons+' &times; '+DH+'30', money(p.eggs)) +
-        prow('Delivery fee', money(p.fee)) +
-        '<div class="tot"><span class="l">One-time total</span><span class="p">'+money(p.perDelivery)+'</span></div>';
+        prow('Eggs &mdash; '+state.cartons+' &times; '+DH+CARTON, money(o.eggs)) +
+        prow('Delivery fee', money(o.fee)) +
+        '<div class="tot"><span class="l">One-time total</span><span class="p">'+money(o.total)+'</span></div>';
     }
   }
 
   function syncBar(){
-    var p = price();
     if(state.mode==='sub'){
-      if(state.days.length){
-        $('#barlabel').innerHTML = freqWord(state.days.length)+' &middot; billed monthly';
+      var p = subPrice();
+      if(p.drops){
+        $('#barlabel').innerHTML = p.totalCartons+' cartons/week &middot; '+p.drops+' drop'+(p.drops>1?'s':'');
         $('#bartotal').innerHTML = money(p.perMonth)+'<small> /month</small>';
       } else {
-        $('#barlabel').innerHTML = state.cartons+' cartons &middot; '+(state.cartons*10)+' eggs each drop';
+        $('#barlabel').innerHTML = 'Build your week';
         $('#bartotal').innerHTML = 'Pick your days &rarr;';
       }
     } else {
+      var o = oncePrice();
       $('#barlabel').innerHTML = state.cartons+' cartons &middot; one-time';
-      $('#bartotal').innerHTML = money(p.perDelivery);
+      $('#bartotal').innerHTML = money(o.total);
     }
   }
 
@@ -436,21 +517,27 @@
 
   $('#next').onclick = function(){
     var s = state.step;
-    if(s===2 && state.mode==='sub' && state.days.length===0){ $('#daysErr').classList.add('show'); return; }
+    if(s===1 && state.mode==='sub' && subPrice().drops===0){ $('#daysErr').classList.add('show'); return; }
     if(s===2 && state.mode==='once' && !state.date){ $('#dateErr').classList.add('show'); return; }
     if(s===3 && !validateStep3()) return;
     if(s===4){
       $('#doneh').textContent = state.mode==='sub' ? 'Subscription started!' : "Order placed!";
-      var when = state.mode==='sub' ? freqWord(state.days.length) : ('on '+(state.date||'your date'));
-      $('#doneline').innerHTML = '<b>'+state.cartons+' cartons</b>, '+when+', '+state.time.toLowerCase()+' &mdash; to '+(state.area||'your address')+'.';
+      if(state.mode==='sub'){
+        var p = subPrice();
+        $('#doneline').innerHTML = '<b>'+p.totalCartons+' cartons/week</b> across '+p.drops+' drop'+(p.drops>1?'s':'')+', '+state.time.toLowerCase()+' &mdash; to '+(state.area||'your address')+'.';
+      } else {
+        $('#doneline').innerHTML = '<b>'+state.cartons+' cartons</b>, '+(state.date?('on '+state.date):'on your date')+', '+state.time.toLowerCase()+' &mdash; to '+(state.area||'your address')+'.';
+      }
       show('done'); return;
     }
     show(s+1);
   };
   $('#back').onclick = function(){ if(state.step===1) show('plan'); else if(typeof state.step==='number') show(state.step-1); };
 
-  // init
+  // ---- init ----
+  $('#subtip').innerHTML = 'Tip: <b>'+FEE_MIN_CARTONS+'+ cartons</b> on a single day drops that delivery to <b>'+DH+FEE_LOW+'</b> (instead of '+DH+FEE_HIGH+').';
   renderQty();
+  renderDayQtys();
   // one-time date: no earlier than tomorrow
   (function(){ var d=new Date(); d.setDate(d.getDate()+1); var mm=('0'+(d.getMonth()+1)).slice(-2), dd=('0'+d.getDate()).slice(-2); $('#f_date').min = d.getFullYear()+'-'+mm+'-'+dd; })();
   show('plan');
